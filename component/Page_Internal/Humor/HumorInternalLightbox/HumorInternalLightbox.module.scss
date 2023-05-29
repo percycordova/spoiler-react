@@ -1,0 +1,55 @@
+@import "src/base/variables";
+
+.lightboxContainer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .9);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  overflow: scroll;
+}
+
+
+.lightboxInner {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+
+  img {
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .lightboClose {
+    &::before {
+      content: "\2716";
+      font-size: 20px;
+    }
+
+    border-radius: 50%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid #FFFFFF;
+    color: #FFF;
+    width: 40px;
+    height:40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    transition: all 150ms;
+
+    &:hover {
+      background-color: #fff;
+      color: $lr-red;
+    }
+  }
+}

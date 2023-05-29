@@ -1,0 +1,60 @@
+{
+    "datafake": [
+      {
+        "tagname": "Titulares del día",
+        "category": "ultimas-noticias",
+        "image": "https://cdn.larepublica.pe/images/content/default/newsletter/titulares-del-dia.png",
+        "title": "Diferentes secciones, incluido notas de nuestra edición impresa, en este boletín matinal.",
+        "horario": "De lunes a domingo por la mañana",
+        "color": "#ff0b0b"
+      },
+      {
+        "tagname": "Política",
+        "category": "politica",
+        "image": "https://cdn.larepublica.pe/images/content/default/newsletter/politica.png",
+        "title": "Conoce las principales noticias de política en un solo boletín matinal.",
+        "horario": "De lunes a domingo por la mañana",
+        "color": "#bf4208"
+      },
+      {
+        "tagname": "Espectáculos",
+        "category": "espectaculos",
+        "image": "https://cdn.larepublica.pe/images/content/default/newsletter/espectaculo.png",
+        "title": "Conoce las principales noticias de espectáculos en un solo boletín.",
+        "horario": "De lunes a domingo al finalizar la tarde",
+        "color": "#b400d3"
+      },
+      {
+        "tagname": "Economía",
+        "category": "economia",
+        "image": "https://cdn.larepublica.pe/images/content/default/newsletter/economia.png",
+        "title": "Toda la información sobre el ámbito económico y los temas que marcan la agenda del rubro.",
+        "horario": "De lunes a viernes por la mañana",
+        "color": "#6ab42d"
+      },
+      {
+        "tagname": "Alerta web",
+        "category": "alerta-web",
+        "image": "https://cdn.larepublica.pe/images/content/default/newsletter/alertaweb.png",
+        "title": "Último minuto. Todo sobre breaking news, eventual y más sucesos",
+        "horario": "De lunes a domingo por la mañana",
+        "color": "#f3d200"
+      },
+      {
+        "tagname": "Deporte",
+        "category": "deporte",
+        "image": "https://cdn.larepublica.pe/images/content/default/newsletter/deporte.png",
+        "title": "Mantente informado acerca de las competiciones deportivas y los torneos más importantes.",
+        "horario": "De lunes a domingo por la mañana",
+        "color": "#45e005"
+      },
+      {
+        "tagname": "Género",
+        "category": "genero",
+        "image": "https://cdn.larepublica.pe/images/content/default/newsletter/genero.png",
+        "title": "Artículos sobre feminismo, igualdad de género y lucha contra la violencia hacia las mujeres.",
+        "horario": "Las notas más importantes de la semana.",
+        "color": "#d91afc"
+      }
+    ]
+  }

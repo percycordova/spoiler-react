@@ -1,0 +1,55 @@
+@import 'src/base/variables';
+.grillaPodcasts {
+    background: radial-gradient(44.01% 486.97% at 43.54% 50.17%, rgba(115, 5, 167, 0.3) 0%, rgba(124, 0, 183, 0) 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(90deg, #820B0B 0%, #FF6509 100%);
+    background-blend-mode: screen, overlay, normal;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+    h2 {
+        color: $white;
+    }
+    a {
+        color: $white;
+    }
+}
+.grillaPodcasts__items {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.grillaPodcasts__item {
+    width: 100%;
+    border-radius: 15px;
+    margin: 10px 0;
+    padding: 15px;
+    display: flex;
+}
+.grillaPodcasts__image {
+    width: 120px;
+    height: 120px;
+    border-radius: 4px;
+}
+.grillaPodcasts__title {
+    color: $white;
+    font-family: Roboto, sans-serif;
+}
+.grillaPodcasts__item--content {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.grillaPodcasts__item--icon {
+    display: flex; 
+    justify-content: flex-end;
+}
+@media (min-width: 999px) {
+    .grillaPodcasts__items {
+        flex-direction: row;
+        margin-top: 10px;
+    }
+    .grillaPodcasts__item {
+        margin: 10px;
+    }
+}

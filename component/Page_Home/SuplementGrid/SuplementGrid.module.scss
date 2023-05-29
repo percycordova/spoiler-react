@@ -1,0 +1,8 @@
+@import 'src/base/variables';
+.suplement__content {
+    background: $very-light-gray;
+    min-height: 244px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

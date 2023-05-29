@@ -1,0 +1,44 @@
+@import 'src/base/variables';
+
+
+.main__content {
+    width: 300px;
+    margin-left: 8px;
+    padding: 16px;
+    background-color: #F4F4F4;
+    border: 0.5px solid #E4E4E4;
+    border-radius: 0px 0px 5px 5px;
+
+    @media screen and (max-width: 744px) {
+        width: 310px;
+        height: 317px;
+        padding: 24px 24px 40px 24px;
+        border-radius: 5px;
+    }
+
+    @media screen and (max-width: 673px) {
+        width: 100%;
+        height: auto;
+        padding: 24px;
+        margin-left: 0;
+
+    }
+}
+
+.title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+
+    text-align: center;
+    color: $medium-gray;
+}
+
+.subtitle {
+    margin-top: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: $medium-gray;
+}

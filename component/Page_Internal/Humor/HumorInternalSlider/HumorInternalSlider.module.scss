@@ -1,0 +1,268 @@
+@import "src/base/variables";
+@import "src/base/media-queries";
+
+.SwiperContainer {
+    /* Adaptando los css de la libreria */
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+
+    :global(.slick-list) {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+
+        &:focus {
+            outline: 0
+        }
+
+        :global(&.dragging) {
+            cursor: pointer;
+            cursor: hand
+        }
+    }
+
+    :global(.slick-list, .slick-track) {
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    :global(.slick-track) {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+        &:after,
+        &:before {
+            display: table;
+            content: ''
+        }
+
+        &:after {
+            clear: both
+        }
+    }
+
+
+
+    :global(.slick-track .slick-loading .slick-track) {
+        visibility: hidden
+    }
+
+    :global(.slick-slide) {
+        display: none;
+        float: left;
+        height: 100%;
+        min-height: 1px
+    }
+
+    :global([dir=rtl] .slick-slide) {
+        float: right
+    }
+
+    :global(.slick-slide img) {
+        display: block
+    }
+
+    :global(.slick-slide.slick-loading img) {
+        display: none
+    }
+
+    :global(.slick-slide.dragging img) {
+        pointer-events: none
+    }
+
+    &:global(.slick-initialized) :global(.slick-slide) {
+        display: block
+    }
+
+    &:global(.slick-loading) .slick-slide {
+        visibility: hidden
+    }
+
+    
+
+    &:global(.slick-loading) :global(.slick-list) {
+        background: #fff url('/static/images/ajax-loader.gif') center center no-repeat
+    }
+
+
+    :global(.slick-arrow) {
+        font-size: 0;
+        line-height: 0;
+        position: absolute;
+        top: 50%;
+        display: block;
+        -webkit-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        transform: translate(0, -50%);
+        cursor: pointer;
+        color: transparent;
+        border: none;
+        outline: 0;
+        z-index: 1;
+        height: 30px;
+        width: 30px;
+        background: #fff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+        padding: 7px;
+
+        &:global(.slick-hidden) {
+            display: none
+        }
+
+        @media (min-width: 768px) {
+            height: 48px;
+            width: 48px;
+
+            &:before {
+                font-size: 30px;
+                padding: 15px;
+
+            }
+        }
+
+        &:before {
+            line-height: 0;
+            color: #FF0000;
+            font-size: 20px;
+            content: "";
+            display: block;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuMzE0MjQgMS42MDAwM0w1LjcxNDI5IC05Ljk5MTE3ZS0wN0w5Ljk5MTE3ZS0wNyA1LjcxNDI5TDUuNzE0MjkgMTEuNDI4Nkw3LjMxNDI1IDkuODI4NThMNC4zNDI4NCA2Ljg1NzE0TDE2IDYuODU3MTRMMTYgNC41NzE0M0w0LjM0Mjg0IDQuNTcxNDNMNy4zMTQyNCAxLjYwMDAzWiIgZmlsbD0iIzUzNTM1MyIvPgo8L3N2Zz4K);
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+
+        &:focus,
+        &:hover {
+            background: rgba(255, 255, 255, .7);
+        }
+    }
+
+    :global(.slick-prev) {
+        left: 10px;
+
+        @media (min-width: 768px) {
+            left: 24px;
+        }
+    }
+
+    :global(.slick-next) {
+        right: 10px;
+
+        @media (min-width: 768px) {
+            right: 24px;
+        }
+
+        &:before {
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTguNjg1NzYgMTAuNEwxMC4yODU3IDEyTDE2IDYuMjg1NzFMMTAuMjg1NyAwLjU3MTQzTDguNjg1NzUgMi4xNzE0MkwxMS42NTcyIDUuMTQyODZMLTEuNzk4NDFlLTA2IDUuMTQyODZMLTEuMTk4OTRlLTA2IDcuNDI4NThMMTEuNjU3MiA3LjQyODU3TDguNjg1NzYgMTAuNFoiIGZpbGw9IiM1MzUzNTMiLz4KPC9zdmc+Cg==);
+        }
+    }
+
+}
+/* Adaptando los css de la libreria -- FIN */
+
+.container__humorInternal {
+    margin-top: 8px;
+}
+
+.outside-img-humor {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    padding-top: 53.30%;
+    margin: 0;
+}
+
+.outside-img-humor.internal {
+    padding-top: 63.45%;
+}
+
+.inside_img_humor {
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    width: 100%;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+
+// .carlincaturaInternalCard {
+//     margin-top: 8px;
+//     margin-bottom: 24px;
+// }
+
+// .carlincaturaInternalCard img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     border-radius: 5px;
+// }
+
+.title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 34px;
+    text-align: center;
+    margin-top: 24px;
+
+    @include min768p {
+        font-size: 30px;
+    }
+}
+
+.seeMore {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 652px;
+}
+
+.seeMore_button {
+    margin-top: 24px;
+    width: 100%;
+    height: 40px;
+    background: #FE0404;
+    border-radius: 5px;
+    font-variant: small-caps;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 28px;
+    display: flex;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 48px;
+
+    @include min768p {
+        font-size: 24px;
+        height: 50px;
+    }
+}

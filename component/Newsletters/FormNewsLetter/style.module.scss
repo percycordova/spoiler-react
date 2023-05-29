@@ -1,0 +1,70 @@
+.card-form-register {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px 20px 50px;
+    
+    button{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+.select_item, .input_item {
+    display: block;
+    width: 100%;
+    padding: 1.5rem 0.7rem;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    margin: 2rem 0;
+}
+.select_item {
+    background-color: #fff;
+    color: #757575;
+}
+.container-btn {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 10px;
+    
+}
+.newsletter__label {
+    user-select: none;
+}
+.input-radio {
+    display: none;
+}
+
+.input-radio + .newsletter__label {
+    display: inline-block;
+    z-index: 10;
+    position: relative;
+    color: #9f9f9f;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-weight: bold;
+    background-color: #ffffff;
+    border: 2px solid #cdcdcd;
+    cursor: pointer;
+    transition: all 200ms ease;
+    font-size: 1.5rem;
+}
+
+.input-radio:checked + .newsletter__label {
+    color: #fff;
+    background-color: #ff0b0b;
+    border: 2px solid #ff0b0b;
+}
+
+.input-radio + .newsletter__label {
+    padding: 15px 20px;
+    border-radius: 4px;
+}
+
+.form__newsletter .input_item, .form__button, .select_item 
+//textarea
+{
+    font-size: 1.5rem;
+}      
+.form__newsletter{
+    position: relative;
+}

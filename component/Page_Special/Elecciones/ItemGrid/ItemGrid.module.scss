@@ -1,0 +1,24 @@
+.secondarySpotlight__item {
+    position: relative;
+}
+.secondarySpotlight__image {
+    width: 100%;
+    object-fit: cover;
+}
+.secondarySpotlight__title {
+    font-size: 14px;
+    padding: 10px 0;
+}
+.secondarySpotlight__author {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: grey;
+    margin-top: 5px;
+}
+
+@media (max-width: 720px) {
+    .secondarySpotlight__item:nth-of-type(5) {
+        display: none;
+    }
+}

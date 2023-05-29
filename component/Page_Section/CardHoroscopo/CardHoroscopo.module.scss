@@ -1,0 +1,61 @@
+@import 'src/base/variables';
+
+
+.main__horoscopo {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    flex-direction: row;
+
+    @media screen and (max-width: 744px) {
+        flex-direction: column;
+        gap: 0;
+    }
+
+}
+
+.card__horoscopo {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    flex-direction: column;
+
+    @media screen and (max-width: 744px) {
+        text-align: center;
+    }
+    
+
+    h2 {
+        font-size: 20px;
+        font-family: Roboto;
+        font-weight: 600;
+        line-height: 1.2;
+        text-transform: uppercase;
+    }
+
+    span {
+        font-size: 14px;
+        font-family: Roboto;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    p {
+        font-size: 16px;
+        font-family: Roboto;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+}
+
+
+.horoscopo__img {
+    height: 150px;
+    aspect-ratio: auto 181 / 150;
+    width: 181px;
+
+}

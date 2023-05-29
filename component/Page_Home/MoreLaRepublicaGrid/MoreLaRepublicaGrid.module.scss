@@ -1,0 +1,18 @@
+@import "src/base/variables";
+@import "src/base/media-queries";
+
+.morelarepublica {
+    @include min768p {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    article {
+        @include min768p {
+            width: 25%;
+        }
+        
+        @include min1000p {
+            width: 20%;
+        }
+    }
+}

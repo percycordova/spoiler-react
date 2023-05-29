@@ -1,0 +1,227 @@
+@import 'src/base/variables';
+
+.header__return {
+    max-height: 35px;
+    color: $gray;
+    background-color: $white;
+    padding: 5px 20px;
+    display: flex;
+    max-width: 1330px;
+    margin: auto;
+    a {
+        display: flex;
+        margin-top: 4px;
+    }
+    span {
+        margin-right: 7px;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .header__return--lrRed {
+        margin-right: 8px;
+    }
+    .header__return--lrBack {
+        margin-bottom: 4px;
+    }
+}
+.specials__header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    color: #383939;
+    background-color: #f8f8f8;
+}
+.specials__btnBurguer {
+    background-color: $white;
+    width: 20px;
+    height: 18px;
+    border: 0;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: #383939;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0);
+        transition: .25s ease-in-out;
+        transform-origin: left center;
+        &:first-child {
+            top: 0;
+        }
+        &:nth-child(2) {
+            top: 7px;
+        }
+        &:nth-child(3) {
+            bottom: 0;
+        }
+    }
+}
+.specials__logo {
+    display: inline-block;
+    width: calc(100% - 20px);
+    text-align: right;
+}
+.specials__container {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+.specials__lateralMenu--item {
+    display: block;
+    padding: 15px;
+    text-transform: capitalize;
+    border-bottom: 1px solid #e7e7e7;
+    font-size: 14px;
+}
+.specials__lateralMenu--opacity {
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 80px);
+    pointer-events: auto;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    -webkit-animation: fadeIn .2s 1 linear;
+    background-color: rgba(0,0,0,0.5);
+}
+.specials__lateralMenu--wrapperList {
+    width: calc(100% - 70px);
+    height: calc(100vh - 81px);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    background: #fff;
+    transition: opacity 0.2s,right .3s;
+    opacity: 0;
+    right: 100%;
+}
+
+
+//active
+
+.styleActiveMenu {
+    .specials__lateralMenu--wrapperList {
+        display: block!important;
+        opacity: 1;
+        right: 70px;
+    }
+}
+.styleActiveMenu {
+    .specials__lateralMenu--opacity {
+       display: block;
+       opacity: 1;
+       visibility: visible;
+   }
+}
+.styleActiveMenu {
+    .specials__btnBurguer {
+        span:first-child {
+            transform: rotate(45deg);
+            top: 7px;
+        }
+    }
+}
+.styleActiveMenu {
+    .specials__btnBurguer {
+        span:nth-child(2) {
+            width: 0;
+            opacity: 0;
+        }
+    }
+}
+.styleActiveMenu {
+    .specials__btnBurguer {
+        span:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: -6.5px;
+        }
+    }
+}
+
+.box-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+.specials__wrapperListMenuRS {
+    display: none;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+.specials__btnSocial {
+    a {
+        border-radius: 3px;
+        width: 48px;
+        height: 38px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        margin-left: 10px;
+        margin-bottom: 10px;;
+        svg {
+            fill: $white;
+        }
+
+    }
+    .social__tw {
+        background: #1da1f2;
+    }
+    .social__fb {
+        background: #2d88ff;
+    }
+}
+@media (min-width: 999px) {
+    .specials__btnBurguer {
+        display: none
+    }
+    .specials__header {
+        border-bottom: 2px solid $dark-gray;
+        max-width: inherit;
+        margin: inherit;
+        position: relative;
+    }
+    .specials__container {
+        padding: 15px 30px;
+        max-width: 1330px;
+        justify-content: space-between;
+        margin: 0 auto;
+        height: 102px;
+    }
+    .specials__logo {
+        width: auto;
+        img {
+            width: 254px;
+            height: 61px;
+        }
+    }
+    .specials__wrapperListMenuRS {
+        display: flex!important;
+    }
+    .specials__lateralMenu {
+        display: flex;
+        padding: 10px 0 0;
+        margin: 0;
+        &--item {
+            border: none;
+            font-weight: 600;
+            padding: 0;
+            padding-right: 12px;
+        }
+
+    }
+    .specials__listMenu {
+        display: flex;
+        margin-bottom: -40px;
+    }
+}

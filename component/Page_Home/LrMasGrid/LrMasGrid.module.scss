@@ -1,0 +1,46 @@
+@import 'src/base/variables';
+
+.lrmas__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.lrmas__item {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    margin-bottom: 5px;
+}
+.lrmas__image {
+    max-width: 50%;
+    border-radius: 5px;
+}
+.lrmas__title {
+    font-size: 1.4rem;
+    line-height: 1.15;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lrmas__info {
+    flex-direction: column;
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.lrmas__item--logo {
+    display: inline-block;
+    img {
+        object-fit: contain;
+    }
+}
+@media (min-width: 768px) {
+    .lrmas__item {
+        width: 50%;
+    }
+    .lrmas__image {
+        max-width: 195px;
+    }
+}

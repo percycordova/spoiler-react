@@ -1,0 +1,6 @@
+.sectionContainer {
+    max-width: 100%;
+    @media (min-width: 673px) {
+        max-width: 50%;
+    }
+}

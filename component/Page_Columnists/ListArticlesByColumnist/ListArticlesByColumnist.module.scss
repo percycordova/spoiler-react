@@ -1,0 +1,29 @@
+@import 'src/base/variables';
+.list-articles-columnist {
+    background: $very-light-gray;
+    border-radius: 0px 0px 5px 5px;
+    padding: 16px;
+    .list-articles {
+        .title-article {
+            line-height: 1.1;
+            transition: all 8s ease;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+            a {
+                color: $medium-gray;
+                font-weight: 700;
+                font-size: 1.4rem;
+                line-height: 16px;
+            }
+        }
+        .name-columnist {
+            color: $lr-red;
+            text-transform: uppercase;
+            size: 1.4rem;
+            line-height: 16.41px;
+            margin-top: 3px;
+        }
+    }
+}

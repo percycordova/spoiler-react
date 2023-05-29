@@ -1,0 +1,25 @@
+.list-content-verificador {
+    list-style: none;
+    padding: 0;
+    background-color: #eee;
+    margin: 10px 0;
+    font-size: 16px;
+    li {
+        border-bottom: 1px solid #b5b3b5;
+        position: relative;
+        padding: 10px 40px;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        &:before {
+            content: "";
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            background-color: red;
+            position: absolute;
+            top: 2.1rem;
+            left: 2rem;
+            transform: translateY(-50%);
+        }
+    }
+}

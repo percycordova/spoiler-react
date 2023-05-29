@@ -1,0 +1,38 @@
+@import 'src/base/variables';
+@import "src/base/media-queries";
+
+.humorGrid__item {
+    display: flex;
+    padding: 0 16px 16px;
+    align-items: center;
+}
+.humorGrid {
+    background: $very-light-gray;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+}
+.humorGrid__image {
+    width: 35px;
+    @include min600p {
+        width: 60px;
+    }
+}
+
+.humorGrid__content {
+    margin-left: 10px;
+    font-size: 1.4rem;
+    line-height: 1.15;
+    display: flex;
+    @include min1000p {
+        flex-direction: column;
+    }
+}
+.humorGrid__content--section:before {
+    content: '-';
+    margin: 3px;
+    font-weight: 600;
+    @include min1000p {
+        content: '';
+    }
+}

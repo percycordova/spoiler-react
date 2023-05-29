@@ -1,0 +1,119 @@
+.boxTabla {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .boxTabla {
+    max-width: 1000px;
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 20px;
+  }
+  .politics__list--title,
+  .boxTabla h6 {
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+  .list-item {
+    cursor: pointer;
+  }
+  .boxTabla p {
+    margin-bottom: 20px;
+  }
+  .boxTabla ul {
+    display: list-item;
+    list-style-type: disc;
+    list-style: disc;
+    padding: 0px 30px 20px 30px;
+  }
+  .boxTabla ol {
+    display: list-item;
+    list-style-type: number;
+    list-style: number;
+    padding: 0px 30px 20px 30px;
+  }
+  .items__span {
+    font-weight: 700;
+  }
+  .items__h2 {
+    font-size: 25px;
+  }
+  .items__h3,
+  .items__h4 {
+    font-size: 19px;
+    margin-top: 20px;
+    color: #212529;
+  }
+  .items__h4 {
+    margin: 40px 0 20px;
+  }
+
+  .contentTablaConcept {
+    overflow: auto;
+    max-width: 682px;
+    height: 600px;
+  }
+  .boxTabla-Concept {
+    width: 100%;
+    padding: 10px;
+  }
+  .set-websites {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .set-cell-2 {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    display: grid;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .side-left {
+    font-weight: 700;
+  }
+  .side-right {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .boxTabla-Content {
+    display: flex;
+    width: 100%;
+  }
+
+  .boxTabla-List {
+    width: calc(33.33333% - 24px);
+    display: block;
+    margin-right: 30px;
+  }
+  .boxTabla-Concept {
+    width: calc(66.66667% - 24px);
+  }
+
+  .list {
+    color: #000;
+    transition: 0.3s;
+  }
+  .list:hover {
+    color: #000;
+    background-color: #eee;
+  }
+
+  .hidden {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+
+  .active {
+    background-color: #eee;
+  }
+  .set-cell-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 37px;
+  }
+}
