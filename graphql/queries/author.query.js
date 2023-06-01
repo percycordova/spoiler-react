@@ -1,7 +1,8 @@
-const AUTHOR_QUERY = `
+import { gql } from "@apollo/client";
+
+const AUTHOR_QUERY = gql`
   query Author($_authorSlug: String) {
     author(site_id: "larepublica", status: 1, slug: $_authorSlug, cache: 1200) {
-      __typename
       _id
       fullname
        type

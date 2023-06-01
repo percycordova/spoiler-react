@@ -3,7 +3,7 @@ import fetchApi from "../services/api/fetchApi";
 const WithAmp = (WrappedComponent) => {
     const hocComponent = ({ ...props }) => <WrappedComponent {...props} />;
 
-    hocComponent.getInitialProps = async ({ query }) => {
+    hocComponent.getInitialProps = async ({ query,apolloClient }) => {
         const { section, internal } = query;
         const invalidCategories = ["carlincatura", "heduardicidios", "molina"];
         if (internal.length <= 5 && !invalidCategories.includes(section)) {
@@ -12,7 +12,7 @@ const WithAmp = (WrappedComponent) => {
 
             const article_interna = await fetchApi("article", {
                 slug: slug_article || "",
-            });
+            },apolloClient);
             if (article_interna.article) {
                 const category__article = article_interna?.article?.data?.categories[0]?.name;
                 const title__article = article_interna?.article?.metadata_seo?.seo_title;
@@ -21,19 +21,19 @@ const WithAmp = (WrappedComponent) => {
                 if (slugInlive && slugInlive.length > 0) {
                     liveBlogPosting = await fetchApi("live", {
                         slug: slugInlive,
-                    });
+                    },apolloClient);
                     //   console.log("----------liveBlogPosting>>>>---------", liveBlogPosting)
                 }
                 const interlinkingData = await fetchApi("spotlight", {
                     id: "603825201d5dd56e450b720b",
                     site: "larepublica",
-                });
+                },apolloClient);
 
 
                 // consumo de api de cuponidad libero
                 const data_offers_today = await fetchApi("third-party", {
                     type: "cuponidad",
-                });
+                },apolloClient);
                 const typePage = "internal_note_amp"
                 return {
                     typePage,

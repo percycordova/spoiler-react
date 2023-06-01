@@ -5,19 +5,19 @@ import { AuthorOverview } from "component/Page_Author_Internal/AuthorOverview/Au
 import { ShowMoreButton } from "component/global/ShowMoreButton/ShowMoreButton";
 import { MgId } from "component/global/Mgid";
 
-const AuthorInternalComp = ({ author, adsPage, articlesData, showMore, loading, lastPage, newsAtemporal, analyticsGral }) => {
+const AuthorInternalComp = ({ author, adsPage, articlesData, showMore, loading, showBtn, newsAtemporal, analyticsGral }) => {
     return (
         <div className="container__columns">
             <section className="col__content">
                 <AuthorOverview author={author} />
                 <SlotAds type="Strip" data={adsPage?.ads?.data} />
                 <ListArticles data={articlesData} adsPage={adsPage} />
-                {!lastPage && (
+                {showBtn && (
                     <ShowMoreButton loading={loading} onClick={showMore} />
                 )}
                 <MgId />
             </section>
-            <section className="col__content offset-313">
+            <section className="col__content offset-300">
                 <SlotAds data={adsPage?.ads?.data} type="Middle" />
                 <Moreseen data={analyticsGral} />
                 <div className="sticky-viewability">

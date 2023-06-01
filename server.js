@@ -14,24 +14,7 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   createServer(async (req, res) => {
     try {
-      /* Se agregan los comandos recomendados para server en next
-      @url: https://nextjs.org/docs/advanced-features/custom-server  */
       const parsedUrl = parse(req.url, true)
-      /* if (parsedUrl.pathname !== "/" && !req.url.startsWith("/static") && !req.url.startsWith("/prebid") && !req.url.startsWith("/_next")) {
-        if (parsedUrl.query.outputType == "amp") {
-          let destPath = parsedUrl.pathname
-          if (parsedUrl.pathname.endsWith("/")) {
-            destPath = parsedUrl.pathname.slice(0, parsedUrl.pathname.length - 1)
-          }
-          const destUrl = "/amp" + destPath;
-          return redirect(res, 301, destUrl)
-        }
-        else if (parsedUrl.pathname.endsWith("/")) {
-          const destUrl = parsedUrl.pathname.slice(0, parsedUrl.pathname.length - 1)
-          return redirect(res, 301, destUrl)
-        }
-
-      } */
       await handle(req, res, parsedUrl)
 
     } catch (err) {

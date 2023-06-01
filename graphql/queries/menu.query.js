@@ -1,7 +1,8 @@
-const MENU_QUERY = `
+import { gql } from "@apollo/client";
+
+const MENU_QUERY = gql`
   query menu($_id: String) {
     menu (site_id: "larepublica", _id: $_id, status: 1) {
-        __typename
         _id
         links {
         title

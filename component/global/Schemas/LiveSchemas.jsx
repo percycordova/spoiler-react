@@ -34,8 +34,8 @@ const LiveSchema = ({data}) => {
                 return {
                         "@type": "Person",
                         "@id": "http://schema.org/#author",
-                        "name": fullname || "La República",
-                        "url": `${process.env.SITE_DOMAIN_URL}${slug ||  "/autor/la-republica"}`,
+                        "name": fullname,
+                        "url": `${process.env.SITE_DOMAIN_URL}${slug}/`,
                     }
             } )
         }
@@ -126,7 +126,6 @@ const LiveSchema = ({data}) => {
             "description": data_description || data_title,
             "coverageStartTime": convertMediumDateTwo(date_init),
             "coverageEndTime": convertMediumDateTwo(date_end),
-            "datePublished": convertMediumDateTwo(date_update),
             "dateModified": convertMediumDateTwo(date_update),
             "author": schemaAutor,
             "liveBlogUpdate": itemsLive

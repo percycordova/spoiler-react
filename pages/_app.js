@@ -1,6 +1,7 @@
 import "src/global.scss";
-import fetchApi from "services/api/fetchApi";
 import { PageError } from "component/Page_Error";
+import withApollo from "services/apollo-client/hocApollo";
+import fetchApi from "services/api/fetchApi";
 
 function MyApp({ Component, pageProps }) {
     if (pageProps.error) {
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 MyApp.getInitialProps = async function ({ Component, ctx }) {
+    const { apolloClient, res } = ctx
     let appProps = {},
         customProps;
 
@@ -17,21 +19,24 @@ MyApp.getInitialProps = async function ({ Component, ctx }) {
         appProps = await Component.getInitialProps(ctx);
     }
     if (appProps) {
-
         if (appProps.typePage) {
             const { typePage } = appProps;
-            const mainMenu = await fetchApi("menu", { id: "5f3b422ee3c5391ae1659705" });
+            const mainMenu = await fetchApi("menu", { id: "5f3b422ee3c5391ae1659705" }, apolloClient);
             const topicsMenu = await fetchApi("menu", {
                 id: "61202c65a3bc283f4b016cf7",
-            });
+            }, apolloClient);
             const footerMenu = await fetchApi("menu", {
                 id: "5f3b4614b1e66d41312c56b2",
-            });
+            }, apolloClient);
             let adsPage = await fetchApi("ads", { limit: 60 });
             const data = adsPage?.ads?.data?.filter(adItem => adItem?.type?.includes(typePage));
             adsPage = { ads: { data } }
-            const firstAlertWeb = (await fetchApi("spotlight", { id: "5fdccb22136b0817a17d3504" })) || {};
-            const secondAlertWeb = (await fetchApi("spotlight", { id: "60eca46d72fba41c1e5ff238" })) || {};
+            const firstAlertWeb = await fetchApi("spotlight", {
+                id: "5fdccb22136b0817a17d3504"
+            }, apolloClient);
+            const secondAlertWeb = await fetchApi("spotlight", {
+                id: "60eca46d72fba41c1e5ff238"
+            }, apolloClient);
             customProps = {
                 mainMenu,
                 footerMenu,
@@ -40,12 +45,12 @@ MyApp.getInitialProps = async function ({ Component, ctx }) {
                 firstAlertWeb,
                 secondAlertWeb,
             };
-            
+
             if (appProps.error) {
                 const relatedArticles = await fetchApi("external", {
                     limit: 30,
-                });
-                ctx.res.statusCode = appProps.error;
+                }, apolloClient);
+                res.statusCode = appProps.error;
                 customProps = {
                     ...customProps,
                     statusCode: appProps.error,
@@ -63,4 +68,4 @@ MyApp.getInitialProps = async function ({ Component, ctx }) {
     return { ...appProps };
 };
 
-export default MyApp;
+export default withApollo(MyApp);

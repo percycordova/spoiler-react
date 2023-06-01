@@ -1,7 +1,8 @@
 import MULTIMEDIA_FRAGMENT from "../fragments/multimedia.fragment";
 import CATEGORIES_FRAGMENT from "../fragments/categories.fragment";
+import { gql } from "@apollo/client";
 
-const LIST_ARTICLES_QUERY = `
+const LIST_ARTICLES_QUERY = gql`
     query Articles (
         $_limit : Int, 
         $_orderField: String, 
@@ -16,7 +17,6 @@ const LIST_ARTICLES_QUERY = `
             site_id: "larepublica", limit: $_limit, order_field: $_orderField,
             order_sort: "desc", status: 1, category_slug: $_categorySlug, view: $_view,tag_slug: $_tagSlug, author_id: $_authorId, page: $_page
         ) {
-            __typename
             per_page
             data {
                 _id

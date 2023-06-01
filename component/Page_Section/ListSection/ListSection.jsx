@@ -56,8 +56,6 @@ const ListSection = (props) => {
                 if (item.type === "ads") {
                     return <SlotAds type={item?.type_ads} data={adsPage?.ads?.data} key={item?._id} />;
                 } else {
-
-
                         const image = item?.data?.multimedia?.find(media => media.type == "image")?.path ||
                         item?.data?.multimedia?.find(media => media.type == "video")?.data?.image_path || process.env.IMAGE_DEFAULT_1250x735;
                         const isVideo = item?.data?.multimedia?.some(media => media.type == "video")
@@ -81,16 +79,17 @@ const ListSection = (props) => {
                                     />
                                 </figure>
                             <div className={style["list__section--content"]}>
+                                <a href={tagSlug || `#`} className={style["list__section--tag"]}>
+                                    {tagName}
+                                </a>
                                 <h2 className={style["list__section--title"]}>
                                     <a href={item.slug}  className="extend-link">
                                     {item.title}
                                     </a>
                                 </h2>
-                                <a href={tagSlug || `#`} className={style["list__section--tag"]}>
-                                    {tagName}
-                                </a>
+                                
                                 <div className={style["list__section--author"]}>
-                                    <AuthorSign data={authorData} />
+                                    <AuthorSign data={authorData} subText='POR: ' />
                                     <time className={style["list__section--time"]}>
                                         {dateArticle}
                                     </time>

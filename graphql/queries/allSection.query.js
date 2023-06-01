@@ -1,4 +1,6 @@
-const LIST_SECTIONS = `
+import { gql } from "@apollo/client";
+
+const LIST_SECTIONS = gql`
   query Categories ($_limit: Int, $date: String, $date_end: String, $_type: String, $_parent: String) {
     
     categories (

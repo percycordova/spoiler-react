@@ -1,39 +1,81 @@
-import style from "component/Page_Home/SectionGrid/SectionGrid.module.scss";
-import { TitleSection } from "component/Page_Home/TitleSection/TitleSection";
-import { ItemSection } from "component/Page_Home/ItemSection/ItemSection";
+import { Title } from "component/global/Title/Title";
+import DegradedCard from "../DegradedCard/DegradedCard";
+import styles from "../SectionGrid/SectionGrid.module.scss";
+import SmallCard from "../SmallCard/SmallCard";
+import { colorSection } from "util/colorSection";
 
-const SectionGrid = ({data, title, type, linkTo, imageTitle, sponsor, withSection,showImage=true}) => {
-    let items = null;
-    let seeMoreText = "ver más";
-    if(type === "comercial"){
-        items = data?.spotlight?.data?.automatic[0]?.notes;
-        linkTo = data?.spotlight?.data?.url;
-        title = data?.spotlight?.data?.title || data?.spotlight?.data?.automatic[0]?.term?.name;
-    } else if(type === "discover"){
-        items = data?.spotlight?.data?.item;
-        linkTo = process.env.SITE_DOMAIN_URL;
-        seeMoreText = '';
-    }  else {
-        items = data?.articles?.data;
-        linkTo = `${process.env.SITE_DOMAIN_URL}${linkTo}`;
-    }
-    let showItems = null;
-    let showGrid = null;
+const SectionGrid = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
+  let dataDefault = [];
+  let dataMain = {};
+  let listItem;
+  console.log("test::", colorSection(sectionTitle));
 
-    if(items && items.length > 0){
-        showItems = items.map((item, key) => <ItemSection data={item} key={key} withSection={withSection} type={type} showImage={showImage} />);
+  if (data?.articles?.data && data?.articles?.data?.length > 0) {
+    dataDefault = data?.articles?.data;
+  }
+  if (dataDefault.length > 0) {
+    dataMain = dataDefault.slice(0, 1)[0];
+    const urlImage =
+      dataMain?.data?.multimedia.find((media) => media.type == "image")?.path ||
+      dataMain?.data?.multimedia.find((media) => media.type == "video")?.data?.image_path ||
+      "/static/images/placeholder.png";
+    listItem = (
+      <div className={`${styles["listItem__container"]}`}>
+        <div className={`${styles["listItem__container-primaryCard"]}`}>
+          <DegradedCard
+            urlNote={dataMain?.slug}
+            altImg={dataMain?.data?.multimedia[0]?.data?.title}
+            urlImg={urlImage}
+            title={dataMain?.title}
+            width={600}
+            height={445}
+            gradientHeight="200px"
+          />
+        </div>
 
-        showGrid = <section>
-                        <TitleSection title={title} type={type} seeMoreText={seeMoreText} linkTo={linkTo} imageTitle={imageTitle} sponsor={sponsor} />
-                        <div className={`${style["grillaHome"]} ${type === 'discover' ? style["grillaDiscover"] : '' }`}>
-                            <div className={style["grillaHome__items"]}>
-                                {showItems}
-                            </div>
-                        </div>
-                    </section>
-    }
+        <div className={`n-columnas ${styles["listItem__container-secondaryCard"]}`}>
+          {dataDefault.slice(1, 9).map((item, index) => {
+            const title = item?.title ?? "";
+            const imgUrl =
+              item?.data?.multimedia.find((media) => media.type == "image")?.path ||
+              item?.data?.multimedia.find((media) => media.type == "video")?.data?.image_path ||
+              "/static/images/placeholder.png";
+            const urlNote = item?.slug ?? "";
+            return <SmallCard key={`${index}-${title}`} urlImg={imgUrl} title={title} urlNote={urlNote} />;
+          })}
+          <style jsx>{`
+            @media (min-width: 769px) {
+              .n-columnas {
+                display: grid;
+                grid-template-columns: repeat(${nColumnas}, 1fr);
+              }
+            }
+          `}</style>
+        </div>
+      </div>
+    );
+  }
 
-    return showGrid;
-}
+  return (
+    <>
+      <div className={`${styles["container__sectionGrid"]}`}>
+        <div
+          className={`${styles["sectionGrid__head"]}`}
+          style={{
+            borderBottom: `1px solid ${colorSection(sectionTitle)}`,
+            borderTop: `1px solid ${colorSection(sectionTitle)}`,
+          }}
+        >
+          <Title title={sectionTitle} type="h2" />
+          <p className={`${styles["sectionGrid__head__separator"]}`}>{}</p>
+          <a href={linkTo} className={`${styles["sectionGrid__head__linkTo"]} extend-link`}>
+            VER MÁS
+          </a>
+        </div>
+        {listItem}
+      </div>
+    </>
+  );
+};
 
-export { SectionGrid };
+export default SectionGrid;

@@ -63,16 +63,16 @@
         border-radius: 5px;
     }
     .wrapper__icon-mail {
-        background-color: $grayish-magenta;
+        background-color: gray;
     }
     .wrapper__icon-web {
         background-color: #83a1ed;
     }
     .wrapper__icon-twitter {
-        background-color: $twitter-blue;
+        background-color: blue;
     }
     .wrapper__icon-rss {
-        background-color: $orange;
+        background-color: orange;
     }
 }
 
@@ -88,7 +88,7 @@
     margin-top: 8px;
     span {
         text-transform: uppercase;
-        color: $lr-red;
+        color: red;
         font-size: 1.4rem;
         line-height: 16px;
         cursor: pointer;

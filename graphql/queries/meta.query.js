@@ -1,7 +1,8 @@
-const META = /* gql */`
+import { gql } from "@apollo/client";
+
+const META = gql`
   query MetaHome {
     site (_id:"larepublica") {
-      __typename
       _id
       name
       domain

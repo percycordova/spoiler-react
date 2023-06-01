@@ -1,4 +1,4 @@
-import {PageError} from "component/Page_Error";
+import { PageError } from "component/Page_Error";
 
 const Error = (props) => {
     return <PageError {...props} />

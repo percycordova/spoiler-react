@@ -1,7 +1,8 @@
-const INTERNAL_QUERY = `
+import { gql } from "@apollo/client";
+
+const INTERNAL_QUERY = gql`
     query articles($internalSlug: String) {
         article(site_id: "larepublica", slug: $internalSlug, status: 1, category_data: true) {
-            __typename
             _id
             title
             

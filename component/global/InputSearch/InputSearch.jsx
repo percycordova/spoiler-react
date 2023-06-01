@@ -22,7 +22,7 @@ const InputSearch = ({ refBtnSearch, showSearch }) => {
         event.preventDefault();
 
         if (resultSearch !== "") {
-            window.location.href = `https://larepublica.pe/buscador?buscando=${resultSearch}`;
+            window.location.href = `${process.env.SITE_DOMAIN_URL}/buscador?buscando=${resultSearch}`;
         }
     };
 
@@ -79,7 +79,7 @@ const InputSearch = ({ refBtnSearch, showSearch }) => {
                         type="search"
                         onKeyUp={onKeyUp}
                         onKeyDown={onKeyDown}
-                        placeholder="Buscar en La República"
+                        placeholder="Buscar en Kbeat"
                     />
                     <button type="button" onClick={onSearch}>Buscar</button>
                     <span className="" aria-hidden="true">

@@ -11,9 +11,12 @@ import { OffersToday } from "component/Page_Internal/OffersToday/OffersToday";
 
 import resizePrototype from "util/resizePrototype";
 import { AmpSlotAds } from "component/global/AdsManager/AmpSlotAds/AmpSlotAds";
+
+//import ListInterest from ".components/page_internal/listInterest";
+//import GalleryNoteVertical from "components/page_internal/galleryNoteVertical";
 import { LiveFeatured } from "component/Page_Internal/LiveFeatured/LiveFeatured";
+import { TaboolaAMP } from "component/global/TaboolaAmp/TaboolaAmp";
 import { VideoMedia } from "component/Page_Internal/MainMultimedia/Video/VideoMedia";
-import { MgId } from "component/global/Mgid";
 
 export const config = { amp: true };
 
@@ -92,9 +95,6 @@ const InternaAmp = (props) => {
             showCategory = (
                 <div className="internalBadge">
                     <span className="comp__badges badge__left"><a href={categorySlug}>{categoryName}</a></span>
-                    <time dateTime={convertirFecha(author__date?.split(" ").join("T"), "iso-2")} className="author__date">
-                        {convertirFecha(author__date?.split(" ").join("T"), "short")}
-                    </time>
                 </div>
             );
 
@@ -170,7 +170,12 @@ const InternaAmp = (props) => {
                     );
                 }
                 // console.log("data.authors-----------",data.authors)
-                showAuthor = <Author amp={true} data={article} />;
+                showAuthor = <div className="container_author_time">
+                                <Author amp={true} data={article} subText='Por: '/>
+                                <time dateTime={convertirFecha(author__date?.split(" ").join("T"), "iso-2")} className="author__date">
+                                    {convertirFecha(author__date?.split(" ").join("T"), "short")}
+                                </time>
+                            </div>
 
                 if (data.multimedia && Object.keys(data.multimedia) && Object.keys(data.multimedia).length) {
                     const { multimedia } = data;
@@ -231,7 +236,7 @@ const InternaAmp = (props) => {
                                 <amp-carousel width="500" height="294" layout="responsive" controls type="slides">
                                     {typeImg.map((item, key) => {
                                         return (
-                                            <div className="larepublica-carousel-img" key={`item-carousel-amp-${key}`}>
+                                            <div style={{margin:'0 -16px'}} className="larepublica-carousel-img" key={`item-carousel-amp-${key}`}>
                                                 <amp-img
                                                     src={newResize.resizeWapa(item?.path || process.env.IMAGE_DEFAULT_1250x735, 500, 294)}
                                                     width="500"
@@ -379,7 +384,7 @@ const InternaAmp = (props) => {
                         }
                     });
 
-                    showContent = <ContentElement amp slug={meta_url} data={dataBody} adsPage={adsPage || []} author={article?.data?.authors}/>;
+                    showContent = <ContentElement amp slug={meta_url} data={dataBody} adsPage={adsPage || []} />;
                 }
 
                 if (data.tags && Object.keys(data.tags) && Object.keys(data.tags).length) {
@@ -432,6 +437,7 @@ const InternaAmp = (props) => {
 
     const socialMedia = (
         <div className="shared__container">
+            <p className="compatir">Compartir: </p>
             <amp-social-share className="shared__fb" type="facebook" data-param-app_id="489210501129201" height="35" width="35" />
             <amp-social-share
                 className="shared__wsp"
@@ -471,14 +477,14 @@ const InternaAmp = (props) => {
             <AmpLayout data={dataSeo} dataSchema={article_interna?.article} sectionName={sectionName} title={meta.titleMeta}>
                 <HeaderAmp data={mainMenu} topicsMenu={topicsMenu} firstAlertWeb={firstAlertWeb} secondAlertWeb={secondAlertWeb} />
                 <div className="container__amp-internal">
-                    <AlertaWebAMP alertWebData={firstAlertWeb} cssName="blockAlertaWebLink" />
-                    <AlertaWebAMP alertWebData={secondAlertWeb} variant="secondary" cssName="blockAlertaWebLink2" />
+                    
                     <div className="content__amp">
                         <AmpSlotAds section={sectionName} data={adsPage?.ads?.data} type="amp_Sticky" />
                         <div className="mainContent__tags">{showCategory}</div>
                         {showTitle}
                         {showTeaser}
                         {showInterlinking}
+                        {showAuthor}
                         {liveIsFeaturedTrue && liveIsFeaturedTrue.length > 0 ? (
                             <LiveFeatured
                                 dataLiveIsFeatured={liveIsFeaturedTrue}
@@ -494,7 +500,7 @@ const InternaAmp = (props) => {
                         {liveIsFeaturedTrue?.length === 0 && legendImage}
                         <AmpSlotAds section={sectionName} data={adsPage?.ads?.data} type="amp_Strip" />
                         <div className="content--autor-btnsm">
-                            {showAuthor}
+                            
                             {socialMedia}
                         </div>
                         <div className="container__body-amp">
@@ -503,42 +509,9 @@ const InternaAmp = (props) => {
                         <div className="mainContent__tags_list">
                             <ul className="mainContent__tags-list">{showTags}</ul>
                         </div>
-                        <div className="container__google-news-amp">
-                            <div className="wrapper_btn_news_google_amp">
-                                <a
-                                    href="https://larepublica.pe/newsletter"
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                    style={{ border: "1px solid #fe0404" }}
-                                >
-                                    <div className="icon__news">
-                                        <amp-img src="/static/lr/lrbtn.png" alt="google News icon" width="20" height="11" />
-                                    </div>
-                                    <span className="icon_news--title" style={{ backgroundColor: "#ff0102" }}>
-                                        Recibe los boletines de LR
-                                    </span>
-                                </a>
-                            </div>
-                            <div className="wrapper_btn_news_google_amp">
-                                <a
-                                    href="https://news.google.com/publications/CAAqBwgKMP6OigMwlqo8?hl=es-419&gl=PE&ceid=PE:es-419"
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                    style={{ border: "1px solid #008DFF" }}
-                                >
-                                    <div className="icon__news">
-                                        <amp-img src="/static/lr_google_news.png" alt="google News icon" width="24" height="24" />
-                                    </div>
-                                    <span className="icon_news--title" style={{ backgroundColor: "#008DFF" }}>
-                                        Recibe las noticias en Google News
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="mobile-visible">
-                            <OffersToday offersToday={data_offers_today?.data || []} shuffle={true} amp={true} />
-                        </div>
-                        <MgId amp />
+                       
+                        
+                        <TaboolaAMP />
                     </div>
                 </div>
             </AmpLayout>

@@ -129,7 +129,7 @@ const AdsManager = props => {
               });
       
             function updateSlotStatus(slotId) {
-                if(slotId!=="videoinread" && slotId!=="Floating2" && slotId!=="Videoinread2"  && slotId!=="Videoinread3" ){
+                if(slotId!=="videoinread" && slotId!=="Floating" && slotId!=="Floating2" && slotId!=="Videoinread2"  && slotId!=="Videoinread3" ){
                     setTimeout(function(){
                         /* 
                         CON ESTE LOG PUEDO VER SI SE ESTA REGISTRANDO EL MOMENTO EN EL QUE SE RECARGA LA PUBLICIDAD

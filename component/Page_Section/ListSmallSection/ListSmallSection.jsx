@@ -8,7 +8,7 @@ const ListSmallSection = ({ data }) => {
     if(data && Object.keys(data) && Object.keys(data).length > 0){
         const itemList = data.map ((item, key) => {
             let image, slug, title = null;
-            if(item.type === 'article' || item.type === 'live' || item.type === 'gallery' || item.type === 'video' || item.type === 'article2'){
+            if(item.type === 'article'){
                 image = item?.data?.multimedia?.find(media => media.type === 'image')?.path || item?.data?.multimedia?.find(media=>media.type=='video')?.data?.image_path || process.env.IMAGE_DEFAULT_1250x735;
                 slug = item.slug;
                 title = item.title;

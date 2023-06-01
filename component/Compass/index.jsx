@@ -35,7 +35,7 @@ const Compass = ({ amp = false, articleData, meta }) => {
     } else {
         if (articleData) {
             const authors = articleData?.user?.username;
-            const sections = articleData?.data?.categories?.map(category=>category).sort((category) => (category.slug.split("/").length * -1))
+            const sections = articleData?.data?.categories?.sort((category) => (category.primary ? 1 : -1))
                 .map((category) => category.name)?.join(";");
             const tags = articleData?.data?.tags?.map((tag) => tag.name)?.join(";");
             metaDataArticles = (

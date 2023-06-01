@@ -1,4 +1,6 @@
-const DETALLE_LIVEBLOGPOSTING_QUERY = `
+import { gql } from "@apollo/client";
+
+const DETALLE_LIVEBLOGPOSTING_QUERY = gql`
   query Live($slug: String) {
     live(site_id: "larepublica", slug: $slug, status: 1) {
       _id

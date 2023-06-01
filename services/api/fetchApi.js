@@ -1,26 +1,31 @@
+import { memoized, memoizedArticle, memoizedLive } from "services/cache/memoized";
+import { getData } from "services/graphql/getData";
+
 /* 
     @params:
         entity: (ads. article, artices, author, authors, category, tag, spotlght, menu, setting, meta, external)
         params: ...others params (params used for query)
 */
-const fetchApi = async (entity, params) => {
-    const ROOT_APP = process.env.SITE_DOMAIN_URL;
-    const parseParams = Object.keys(params)
-        .map(
-            (key_param) =>
-                `${encodeURIComponent(key_param)}=${encodeURIComponent(
-                    params[key_param]
-                )}`
-        )
-        .join("&");
-    return fetch(`${ROOT_APP}/api/search/${entity}?${parseParams}`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-        .then((resp) => resp.json())
-        .catch((error) => console.error("Error fetching api", error));
+
+const fetchApi = (entity, params, client) => {
+    function getDataResult(query) {
+        const dataApi = getData(query, client)
+        return dataApi.result;
+    }
+
+    let cache;
+    if (entity == "article") {
+        cache = memoizedArticle
+    } else if (entity == "live") { 
+        cache = memoizedLive
+    } else {
+        cache = memoized
+    }
+    const query = { entity, ...params };
+    if (!cache.has([JSON.stringify(query)])) {
+        const promiseData = getDataResult(query)
+        cache(JSON.stringify(query), promiseData)
+    }
+    return cache.get([JSON.stringify(query)])
 };
 export default fetchApi;

@@ -76,14 +76,14 @@ const PageSearch = (props) => {
                     }
                     .gcse-searchbox .gsc-cursor-page {
                         padding: 0.2em 0.5em !important;
-                        border: 1px solid #900000 !important;
+                        border: 1px solid ##F101CC; !important;
                         border-radius: 4px !important;
                     }
                     .gcse-searchbox .gsc-cursor-page.gsc-cursor-current-page {
                         text-shadow: none !important;
-                        border: 1px solid #900000 !important;
-                        background: #e001099e !important;
-                        color: #1c001e !important;
+                        border: 1px solid ##F101CC; !important;
+                        background: ##F101CC; !important;
+                        color: #fff !important;
                     }
                 `}</style>
         </Layout>

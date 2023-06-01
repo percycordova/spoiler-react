@@ -1,8 +1,9 @@
-const SECTION_QUERY = /* gql */ `
+import { gql } from "@apollo/client";
+
+const SECTION_QUERY = gql`
   query section ( $slug: String ) {
     
     category (site_id: "larepublica", slug: $slug, cache: 120) {
-      __typename
       _id    
       type
       name

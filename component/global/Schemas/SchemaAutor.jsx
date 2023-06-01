@@ -4,11 +4,10 @@ const schemaAuthorPage = (data, articlesData) => {
     const arrayMetadata = data?.metadata ?? [];
     let url_photo = "";
     let email = "";
+
     for (let index = 0; index < arrayMetadata.length; index++) {
-        if (arrayMetadata[index]?.key === "url_photo" && arrayMetadata[index]?.value) {
-            url_photo = arrayMetadata[index]?.value;
-        }
-        if (arrayMetadata[index]?.key === "url_photo_origin" && !url_photo) {
+       
+        if (arrayMetadata[index]?.key === "url_photo") {
             url_photo = arrayMetadata[index]?.value;
         }
         if (arrayMetadata[index]?.key === "email" && arrayMetadata[index]?.value) {

@@ -1,6 +1,7 @@
+import { gql } from "@apollo/client";
 import MULTIMEDIA_FRAGMENT from "../fragments/multimedia.fragment";
 
-const LIST_ARTICLES_QUERY_SITEMAPS = `
+const LIST_ARTICLES_QUERY_SITEMAPS = gql`
     query Articles (
         $_limit : Int, 
         $_orderField: String, 
@@ -17,7 +18,6 @@ const LIST_ARTICLES_QUERY_SITEMAPS = `
             order_sort: "desc", status: 1, category_slug: $_categorySlug, 
             tag_slug: $_tagSlug, author_id: $_authorId, page: $_page, date: $_dateLimit, date_end: $_dateEnd
         ) {
-            __typename
             per_page
             data {
                 _id

@@ -10,9 +10,7 @@ const Schemas = ({ articlesData = [], data, type, listNote, speakable = true,sho
     let SchemaItemList = null;
     let SchemaAutor = null;
     let schemaInternalMicrodata = [];
-    let dateTime = "";
-    let news_type,
-    articleSchema;  
+    let dateTime = "";    
     const OrganizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -212,9 +210,6 @@ const Schemas = ({ articlesData = [], data, type, listNote, speakable = true,sho
         name: "Archivo"
     }
     if (data && data.__typename == "ArticleType") {
-        news_type = data?.news_type ?? "";
-        const contentArticle =
-            data?.data?.content_elements?.map((element) => element.content.trim().replace(/(<([^>]+)>)/gi, "")).join(",") || "";
         /* Validation for get parentCategory */
         if(data.data?.categories?.length>0){
             const {categories} = data.data;
@@ -229,9 +224,6 @@ const Schemas = ({ articlesData = [], data, type, listNote, speakable = true,sho
         if (authorData?.length > 0) {
             authorData = authorData[0];
         }
-        const emailAuthor = authorData?.metadata?.find(ele => ele.key === "email")?.value ?? "mesadigital@glr.pe";
-        const photoAuthor = authorData?.metadata?.find(ele => ele.key === "url_photo")?.value ?? process.env.LOGO_LR_AUTHOR;
-        
         const articleDate = data.update_date?.split(" ").join("T") + "-05:00";
         const articleMultimedia = data.data?.multimedia;
         const articleImageUrl =
@@ -253,131 +245,10 @@ const Schemas = ({ articlesData = [], data, type, listNote, speakable = true,sho
                 name: process.env.SITE_NAME,
             },
         };
-
-        // Validation for type services or template
-        if (news_type && news_type === 'Servicio' || news_type === 'Plantilla') {
-            //background news article
-            articleSchema = {
-                "@context": "https://schema.org",
-                "@type": "BackgroundNewsArticle",
-                headline: data?.title || "",
-                alternativeHeadline: data?.metadata_seo?.seo_title || data?.title || "",
-                url: `${process.env.SITE_DOMAIN_URL}${data.slug}`,
-                publishingPrinciples: "https://larepublica.pe/politicas-y-estandares",
-                datePublished: articleDate,
-                dateModified: articleDate,
-                dateline: articleDate,
-                articleSection: sectionData.name,
-                articleBody: contentArticle,
-                creator: {
-                    "@type": "Person",
-                    name: authorData?.fullname || "La República",
-                },
-                description: data?.data?.teaser,
-                publisher: {
-                    "@type": "Organization",
-                    name: `${process.env.SITE_NAME}`,
-                    url: `${process.env.SITE_DOMAIN_URL}`,
-                    logo: {
-                        "@type": "ImageObject",
-                        url: `${process.env.SITE_DOMAIN_URL}${process.env.LOGO_PUBLISHER}`,
-                        width: 296,
-                        height: 60,
-                    },
-                    sameAs: [`${process.env.SITE_FACEBOOK}`, `${process.env.SITE_TWITTER}`],
-                },
-                mainEntityOfPage: {
-                    "@type": "WebPage",
-                    "@id": `${process.env.SITE_DOMAIN_URL}${data.slug}`,
-                },
-                author: [
-                    {
-                        "@type": "Person",
-                        name: authorData?.fullname || "La República",
-                        url: `${process.env.SITE_DOMAIN_URL}${authorData?.slug ||  "/autor/la-republica"}`,
-                        image: photoAuthor,
-                        contactPoint: {
-                            "@type": "ContactPoint",
-                            "contactType": "Journalist",
-                            email: emailAuthor
-                        },
-                        email: "mesadigital@glr.pe",
-                        jobTitle: "Redacción La República"
-                    },
-                ],
-                image: articleImageData,
-                ...(speakable && {
-                    speakable: {
-                        "@type": "SpeakableSpecification",
-                        xpath: ["/html/head/meta[@property='og:title']/@content", "/html/head/meta[@name='description']/@content"],
-                    },
-                }),
-                isAccessibleForFree: true,
-            };
-        } else {
-            // news article
-
-            articleSchema = {
-                "@context": "https://schema.org",
-                "@type": "NewsArticle",
-                headline: data?.title || "",
-                alternativeHeadline: data?.metadata_seo?.seo_title || data?.title || "",
-                url: `${process.env.SITE_DOMAIN_URL}${data.slug}`,
-                datePublished: articleDate,
-                dateModified: articleDate,
-                dateline: articleDate,
-                articleSection: sectionData.name,
-                articleBody: contentArticle,
-                creator: {
-                    "@type": "Person",
-                    name: authorData?.fullname || "La República",
-                },
-                description: data?.data?.teaser,
-                publisher: {
-                    "@type": "Organization",
-                    name: `${process.env.SITE_NAME}`,
-                    url: `${process.env.SITE_DOMAIN_URL}`,
-                    logo: {
-                        "@type": "ImageObject",
-                        url: `${process.env.SITE_DOMAIN_URL}${process.env.LOGO_PUBLISHER}`,
-                        width: 296,
-                        height: 60,
-                    },
-                    sameAs: [`${process.env.SITE_FACEBOOK}`, `${process.env.SITE_TWITTER}`],
-                },
-                mainEntityOfPage: {
-                    "@type": "WebPage",
-                    "@id": `${process.env.SITE_DOMAIN_URL}${data.slug}`,
-                },
-                author: [
-                    {
-                        "@type": "Person",
-                        name: authorData?.fullname || "La República",
-                        url: `${process.env.SITE_DOMAIN_URL}${authorData?.slug ||  "/autor/la-republica"}`,
-                        image: photoAuthor,
-                        contactPoint: {
-                            "@type": "ContactPoint",
-                            "contactType": "Journalist",
-                            email: emailAuthor
-                        },
-                        email: "mesadigital@glr.pe",
-                        jobTitle: "Redacción La República"
-                    },
-                ],
-                image: articleImageData,
-                ...(speakable && {
-                    speakable: {
-                        "@type": "SpeakableSpecification",
-                        xpath: ["/html/head/meta[@property='og:title']/@content", "/html/head/meta[@name='description']/@content"],
-                    },
-                }),
-            };
-        }
-        
         const ImageObject = {
             "@context": "https://schema.org",
             "@type": "ImageObject",
-            author: authorData?.fullname,
+            author: authorData?.fullname || "La República",
             contentLocation: "Lima, Peru",
             url: articleImageUrl,
             width: 1250,
@@ -415,6 +286,55 @@ const Schemas = ({ articlesData = [], data, type, listNote, speakable = true,sho
                     },
                 },
             ],
+        };
+        const contentArticle =
+            data?.data?.content_elements?.map((element) => element.content.trim().replace(/(<([^>]+)>)/gi, "")).join(",") || "";
+        const articleSchema = {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            headline: data?.title || "",
+            alternativeHeadline: data?.metadata_seo?.seo_title || data?.title || "",
+            url: `${process.env.SITE_DOMAIN_URL}${data.slug}`,
+            datePublished: articleDate,
+            dateModified: articleDate,
+            dateline: articleDate,
+            articleSection: sectionData.name,
+            articleBody: contentArticle,
+            creator: {
+                "@type": "Person",
+                name: authorData?.fullname || "La República",
+            },
+            description: data?.data?.teaser,
+            publisher: {
+                "@type": "Organization",
+                name: `${process.env.SITE_NAME}`,
+                url: `${process.env.SITE_DOMAIN_URL}`,
+                logo: {
+                    "@type": "ImageObject",
+                    url: `${process.env.SITE_DOMAIN_URL}${process.env.LOGO_PUBLISHER}`,
+                    width: 296,
+                    height: 60,
+                },
+                sameAs: [`${process.env.SITE_FACEBOOK}`, `${process.env.SITE_TWITTER}`],
+            },
+            mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `${process.env.SITE_DOMAIN_URL}${data.slug}`,
+            },
+            author: [
+                {
+                    "@type": "Person",
+                    name: authorData?.fullname || "La República",
+                    url: `${process.env.SITE_DOMAIN_URL}${authorData?.slug ||  "/autor/la-republica"}`,
+                },
+            ],
+            image: articleImageData,
+            ...(speakable && {
+                speakable: {
+                    "@type": "SpeakableSpecification",
+                    xpath: ["/html/head/meta[@property='og:title']/@content", "/html/head/meta[@name='description']/@content"],
+                },
+            }),
         };
         let articleRelatedSchema;
         const relatedItems = data.data?.related?.items;

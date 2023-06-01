@@ -1,3 +1,6 @@
+@import 'src/base/variables';
+
+
 .list {
     display: flex;
     gap: 24px;
@@ -26,55 +29,49 @@
         object-fit: cover;
     }
     &--title {
-        font-family: PT serif;
+        // font-family: PT serif;
         font-weight: 700;
-        font-size: 14px;
-        line-height: 16px;
+        font-size: 18px;
+        line-height: 20px;
         max-height: 60px;
         overflow: hidden;
         -webkit-box-orient: vertical;
         display: -webkit-box;
         text-overflow: ellipsis;
         -webkit-line-clamp: 3;
-        transition-property: opacity;
-        transition-timing-function: cubic-bezier(.4,0,.2,1);
-        transition-duration: .3s;
+        
     }
 }
 .list__section--tag {
-    font-family: Roboto,sans-serif;
+    // font-family: Roboto,sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    color: #fe0404;
-    text-transform: uppercase;
-    transition-property: opacity;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
-    transition-duration: .3s;
+    font-weight: 700;
+    color: $black;
     font-variant: all-small-caps;
-    position: relative;
     max-height: 16px;
     overflow: hidden;
     -webkit-box-orient: vertical;
     display: -webkit-box;
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
+    font-style: normal;
+
 }
 .list__section--time {
     display: inline-block;
     white-space: nowrap;
+    font-style: normal;
     font-feature-settings: "smcp","c2sc";
     font-variant: all-small-caps;
-    font-family: Roboto,sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
     color: #666;
-    text-transform: uppercase;
 }
 .list__section--author {
     display: flex;
-    gap: 8px;
     justify-content: space-between;
     flex-direction: column;
 }
@@ -82,8 +79,7 @@
     display: flex;
     flex: 1 1;
     flex-direction: column;
-    justify-content: space-around;;
-    padding-top: 5px;
+    justify-content: space-between;
 }
 @media (min-width: 1000px) {
     .list__section {
@@ -102,6 +98,7 @@
     .list__section--author {
         align-items: center;
         flex-direction: row;
+        gap: 8px;
     }
 }
 
@@ -119,7 +116,7 @@
     width: 40px;
     height: 40px;
     left: 15px;
-    background: rgba(#fe0404, 0.8);
+    background: rgba(#3CB1B9, 0.8);
     border-radius: 50%;
     cursor: pointer;
     z-index: 1;

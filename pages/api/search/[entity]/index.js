@@ -31,34 +31,25 @@ const setCache = async function (key, content) {
     }
 };
 
-const runMiddleware = (req, res, fn) =>
-    new Promise((resolve, reject) => {
-        fn(req, res, (result) => {
-            if (result instanceof Error || req.headers["sec-fetch-mode"] == "navigate" || req.headers["sec-fetch-site"] == "none" || req.headers["sec-fetch-site"] == "cross-site") {
-                reject({ error: "Usuario no autorizado" });
-            }
-            return resolve(result);
-        });
-    });
-
 /* Se definen peticiones */
 
 export default async function handler(req, res) {
 
     try {
-        await runMiddleware(req, res, cors);
         const { query } = req;
         /* Valido si existe el atributo query en la consulta a la ruta GET */
         if (query.entity) {
             /* Invoco a la funcion getData definida en los servicios para graphql
                     @service /services/graphql/getData
             */
-            const { index, result } = getData(query);
-            const dataResult = await setCache(index, result);
-            // const dataResult = await result;
+            if (["articles", "authors"].includes(query.entity)) {
+                const { index, result } = getData(query);
+                const dataResult = await setCache(index, result);
+                // const dataResult = await result;
 
-            if (dataResult) {
-                return res.status(200).json(dataResult);
+                if (dataResult) {
+                    return res.status(200).json(dataResult);
+                }
             }
         }
 

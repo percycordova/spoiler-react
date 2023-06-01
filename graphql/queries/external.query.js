@@ -1,4 +1,6 @@
-const EXTERNAL_QUERY = `
+import { gql } from "@apollo/client";
+
+const EXTERNAL_QUERY = gql`
     query analytics ( $tagSlug: String, $limit: Int, $category_slug: String ) {
         external (
             site_id: "larepublica", 
@@ -10,7 +12,6 @@ const EXTERNAL_QUERY = `
             force: true,
             cache: 300 
             ){
-            __typename
             data
         }
     }

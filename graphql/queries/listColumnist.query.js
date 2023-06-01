@@ -1,7 +1,6 @@
 const LIST_COLUMNISTS = `
     query Authors($_limit: Int, $_page: Int) {
         authors(site_id: "larepublica", limit: $_limit, page: $_page, status: 1, type:"columnist") {
-            __typename
             data {
                 fullname
                 type

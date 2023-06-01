@@ -4,12 +4,14 @@ import { Layout } from "Layouts/Layouts";
 import WithInternal from "hocs/withInternal";
 import { MainContent } from "component/Page_Internal/MainContent/MainContent";
 import { RecommendedNotesByBrand } from "component/Page_Internal/RecommendedNotesByBrand/RecommendedNotesByBrand";
-import { Moreseen } from "component/Page_Section/Moreseen/Moreseen";
 import { SlotAds } from "component/global/AdsManager/SlotAds";
+import { Taboola } from "component/global/Taboola";
 import { OffersToday } from "component/Page_Internal/OffersToday/OffersToday";
 import { SchemaCronos } from "component/global/Schemas/SchemaCronos";
 import { Opta } from "component/global/Opta/Opta";
-import { MgId } from 'component/global/Mgid';
+import { Moreseen } from 'component/global/Moreseen/Moreseen';
+import { TitleSection } from 'component/global/TitleSection/TitleSection';
+import { TitleInterna } from 'component/Page_Internal/TitleInterna/TitleInterna';
 
 const Section = dynamic(import("pages/[section]/index"));
 
@@ -45,7 +47,7 @@ const Internal = (props) => {
                     section_data,
                     section_about,
                     analyticsSeccion,
-                    spotlight_general,
+                    // spotlight_general,
                     adsPage,
                     footerMenu,
                     mainMenu,
@@ -75,6 +77,10 @@ const Internal = (props) => {
     const relatedArticles = article_internal?.article?.data?.related?.items?.slice(0,3) || [];
     const relatedEvergreenArticles = everGreenArticles?.slice(0,3) || []
     const interestList = {external: {data: [...relatedArticles, ...relatedEvergreenArticles]}}
+
+    const slugSection = article_internal?.article?.data?.categories[0].slug;
+    const firstCategories = article_internal?.article?.data?.categories[0].slug.split("/")[1];
+    const titleMostViewed = article_internal?.article?.data?.categories.filter((item) => item.slug.endsWith(firstCategories))[0]?.name || article_internal?.article?.data?.categories[0].name;
     
     return (
         <Layout
@@ -84,13 +90,13 @@ const Internal = (props) => {
             dataFooter={footerMenu}
             topicMenu={topicsMenu}
             prebid={"INTERNA"}
-            firstAlertWeb={firstAlertWeb}
-            secondAlertWeb={secondAlertWeb}
             internal={true}
             listNote={listNote?.articles?.data || []}
         >
             {data_schema_cronos}
             <Head>{isOpta && <Opta />}</Head>
+            <TitleSection name={titleMostViewed} tag="span" href={slugSection} />
+            <TitleInterna title={article_internal?.article?.title} />
             <div className="container__columns">
                 <main className="col__content">
                     <article>
@@ -101,26 +107,22 @@ const Internal = (props) => {
                             adsPage={adsPage}
                             dataLiveIsFeatured={liveIsFeaturedTrue}
                         />
-                        <div className="mobile-visible">
-                            <OffersToday offersToday={data_offers_today?.data || []} shuffle={true} />
-                        </div>
-                        <MgId />
+                        
+                        <Taboola type="internal" />
                     </article>
                 </main>
-                <aside className="col__content offset-313">
+                <aside className="col__content offset-300">
                     
                     <SlotAds type="Middle" data={adsPage?.ads?.data} />
-                    <div className="desktop-visible">
+                    {/* <div className="desktop-visible">
                         <Moreseen title="Te puede interesar" data={interestList} />
-                    </div>
+                    </div> */}
                     <div className="content_Moreseen">
-                        <Moreseen data={analyticsInternal} />
+                        <Moreseen title="LO ÚLTIMO" data={analyticsInternal} />
                     </div>
 
-                    <RecommendedNotesByBrand data={recommendedNotesByBrand} />
-                    <div className="desktop-visible">
-                        <OffersToday offersToday={data_offers_today?.data || []} shuffle={false} />
-                    </div>
+                    {/* <RecommendedNotesByBrand data={recommendedNotesByBrand} /> */}
+                    
                     <div className="sticky-viewability">
                         <SlotAds type="Middle2_Right" data={adsPage?.ads?.data} />
                     </div>

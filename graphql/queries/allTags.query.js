@@ -1,4 +1,6 @@
-const LIST_TAGS = `
+import { gql } from "@apollo/client";
+
+const LIST_TAGS = gql`
   query Tags ($_limit: Int) {
     
     tags (

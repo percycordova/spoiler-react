@@ -1,8 +1,6 @@
 import NextHead from "next/head";
-import { Footer } from "component/global/Footer/Footer";
-import { Header } from "component/global/Header/Header";
-import { AlertWeb } from "component/global/AlertWeb/AlertWeb";
-import { Inlive } from "component/Page_Home/Inlive/Inlive";
+// import { Footer } from "component/global/Footer/Footer";
+// import { Header } from "component/global/Header/Header";
 import { MetaTags } from "component/global/MetaTags/MetaTags";
 import resizePrototype from "util/resizePrototype";
 import { convertirFecha } from "util/convertirFecha";
@@ -16,11 +14,11 @@ import { Compass } from "component/Compass";
 import { ComScore } from "component/global/ComScore";
 import { CookielessTagTeads } from "component/global/CookielessTagTeads";
 import Script from "next/script"
-import { HeaderJudicialidad } from "component/Page_Judicialidad/HeaderJudicialidad/HeaderJudicialidad";
 import { validateGeolocation } from "helpers/seoData/geolocalSections";
+import { Header } from "component/global/Header/Header";
+import { Footer } from "component/global/Footer/Footer";
 
 const newResize = new resizePrototype();
-const humorCategories = ["/carlincatura", "/heduardicidios", "/molina"]
 const Layout = (props) => {
     const {
         children,
@@ -29,8 +27,6 @@ const Layout = (props) => {
         dataHeader,
         topicMenu,
         dataFooter,
-        firstAlertWeb,
-        secondAlertWeb,
         inlive,
         prebid,
         data,
@@ -107,7 +103,7 @@ const Layout = (props) => {
                     meta_description = metadata_seo.seo_description;
                 }
             }
-        } else if (data.type && (data.type === "article" || data.type === "article2" || data.type === "gallery" || data.type === "live" || data.type === "video")) {
+        } else if (data.type && (data.type === "article" || data.type === "article2" || data.type === "gallery" || data.type === "live")) {
             if (
                 data.slug ==
                 "/economia/2020/03/12/exportacion-palta-se-posiciono-como-producto-top-de-oferta-agroindustrial-agricultores-agricultura-lrnd"
@@ -119,7 +115,7 @@ const Layout = (props) => {
             
             meta_slug = data.slug || "";
             meta_url = data.slug;
-            meta_author = data.data?.authors?.find((author) => author.fullname)?.fullname || "Redacción La República";
+            meta_author = data.data?.authors?.find((author) => author.fullname)?.fullname || "La República";
             author_slug = data.data?.authors?.find((author) => author.slug)?.slug || "/autor/la-republica/";
             /* Creo categoria por defecto */
             let category_article = {
@@ -128,7 +124,7 @@ const Layout = (props) => {
             }
             if(data.data?.categories?.length>0){
                 const {categories} = data.data;
-                isHumor = categories.some(category=>humorCategories.some(humorCat=>category.slug.includes(humorCat)))
+                // isHumor = categories.some(category=>humorCategories?.some(humorCat=>category.slug.includes(humorCat)))
                 categories.forEach(category=>{
                     if(validateGeolocation(category.slug)){
                         geoCode = validateGeolocation(category.slug)
@@ -400,8 +396,6 @@ const Layout = (props) => {
         <>
             <NextHead>
                 <title>{meta_title || data_title || "Página no encontrada"}</title>
-                <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link rel="preconnect" href="https://imgmedia.larepublica.pe" />
                 <link
                     rel="preload"
                     as="font"
@@ -430,7 +424,7 @@ const Layout = (props) => {
                 {id_article && (
                     <>
                         <meta idcronos={id_article} />
-                        {internal && !isHumor && <link rel="amphtml" href={`${process.env.SITE_DOMAIN_URL}/amp${meta_slug}`} />}
+                        {internal && <link rel="amphtml" href={`${process.env.SITE_DOMAIN_URL}/amp${meta_slug}`} />}
                     </>
                 )}
                 {geoCode && <meta name="lang" content={geoCode} />}
@@ -439,10 +433,10 @@ const Layout = (props) => {
                 ) : (
                     <link rel="canonical" href={`${process.env.SITE_DOMAIN_URL}/pagina-no-encontrada`} />
                 )}
-                <script dangerouslySetInnerHTML={{ __html: `window.PAGE = '${prebid && typeof prebid === "string" ? prebid : ""}'` }} />
                 <AdsManager data={data} dataAds={adsPage?.ads?.data} showMediaKit={showMediaKit} />
                 <CookielessTagTeads />
-                <script async type="text/javascript" src="https://cdn.embluemail.com/pixeltracking/pixeltracking.js?code=08b5881d67b4f2ce354c5ed613155799" />
+                <script dangerouslySetInnerHTML={{ __html: `window.PAGE = '${prebid && typeof prebid === "string" ? prebid : ""}'` }} />
+                <script defer src="https://cdn.unblockia.com/h.js" />
             </NextHead>
             <InitAdsManager />
             <Compass articleData={data?.type === "article" && data} />
@@ -455,7 +449,7 @@ const Layout = (props) => {
                 <SlotAds type="Lateral_Left" data={adsPage?.ads?.data} />
                 <SlotAds type="Lateral_Right" data={adsPage?.ads?.data} />
             </div>
-            <Header
+            {/* <Header
                 refBtnSearch={refBtnSearch}
                 hideAdTop={hideAdTop}
                 adsPage={adsPage}
@@ -465,16 +459,23 @@ const Layout = (props) => {
                 showSearch={showSearch}
                 internal={internal}
                 type={meta_type}
-            />
+            /> */}
+            <Header refBtnSearch={refBtnSearch}
+                hideAdTop={hideAdTop}
+                adsPage={adsPage?.ads?.data || []}
+                mainData={dataHeader}
+                topicData={topicMenu}
+                setShowSearch={setShowSearch}
+                showSearch={showSearch}
+                data={data}
+                internal={internal}
+                type={meta_type} /> 
             {/* <InputSearch refBtnSearch={refBtnSearch} showSearch={showSearch} /> */}
-            <Inlive inlive={inlive} />
-            <AlertWeb alertWebData={firstAlertWeb} cssName="blockAlertaWebLink" />
-            <AlertWeb alertWebData={secondAlertWeb} variant="secondary" cssName="blockAlertaWebLink2" />
             <div className={isAmp ? "wrapper__content--amp" : "wrapper__content mh-600"}>{children}</div>
             <Footer data={dataFooter} />
             <ComScore />
             <Script strategy="afterInteractive" src="/prebid/prebid.v7.39.js" />
-            <Script strategy="afterInteractive" src="/prebid/ads-prebid-update_2023-04.min.js" />
+            <Script strategy="afterInteractive" src="/prebid/ads-prebid-update_2023-03.min.js" />
             <Script strategy="afterInteractive" src="/static/js/glr-larepublica-test.min.js" />
         </>
     );

@@ -2,7 +2,7 @@
     padding: 16px;
     width: 100%;
     margin: auto;
-    background-color: $white;
+    background-color: $black;
     @media screen and (min-width: 1000px) {
         max-width: 1000px;
     }
@@ -10,18 +10,17 @@
 .container__columns {
     @media screen and (min-width: 1000px) {
         display: flex;
-        margin: 0 -8px;
         flex-wrap: wrap;
+        gap: 16px;
         .col__content {
             flex-basis: 0;
             flex-grow: 1;
             position: relative;
-            padding: 0 8px;
             margin: 0px;
             box-sizing: border-box;
-            &.offset-313 {
-                max-width: 321px;
-                flex: 0 0 321px
+            &.offset-300 {
+                max-width: 300px;
+                flex: 0 0 300px
             }
         }
     }
@@ -39,6 +38,13 @@
 }
 
 // TODO: revisar style body
+
+.flex-col{
+    flex-direction: column;
+}
+.gap-16{
+    gap: 16px;
+}
 
 .d-flex {
     display: flex;
@@ -140,9 +146,41 @@
     }
 }
 
+.showMore__button {
+    background: linear-gradient(270deg, #4695E3 0%, #F200CC 100%);
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 0 auto;
+    font-weight: 700;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    padding: 11px 0 11px 0;
+    width: 100%;
+    text-transform: uppercase;
+    outline: none;
+
+    @media screen and (max-width: 673px) {
+        font-size: 16px;
+        line-height: 19px;
+        padding: 10px 0 11px 0;
+    }
+}
+
 .justify-between {
     justify-content: space-between;
 }
+
+.opacity-50 {
+    opacity: 50%;
+    cursor: progress;
+}
+
 
 .extend-link {
     &--outside {
@@ -173,17 +211,22 @@
 .opta-widget {
     width: 100%;
 }
-//header
+
 .container-header {
-    background: $lr-red;
+    background: $black;
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
 }
 .container__fixed {
-    background-color: $lr-red;
-    min-width: 100vw;
-    height: 58px;
+    background: $black;
+    min-width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    height: 80px;
 }
 @media (min-width: 1000px) {
     .list__menu {
@@ -200,3 +243,26 @@
 .d-none {
     display: none;
 }
+
+.listItemUltimas__container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+  }
+
+  @media (min-width: 769px) {
+    .listItemUltimas__container{
+        flex-direction: row;
+        align-items: flex-start;
+    }
+  }
+
+  .margin-video-container{
+    margin:0 -16px;
+
+    @media (min-width: 999px){
+        margin: 0;
+    }
+  }

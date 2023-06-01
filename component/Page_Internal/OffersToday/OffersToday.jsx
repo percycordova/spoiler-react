@@ -26,7 +26,7 @@ const Item = ({ image = "", alt, url, title, amp }) => {
 						}
 				</figure>
 				<h2 className='description'>
-					<a href={url} target='_blank' rel='nofollow noopener noreferrer'>
+					<a href={url} target='_blank' rel='noopener noreferrer'>
 						{title}
 					</a>
 				</h2>

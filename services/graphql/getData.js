@@ -8,14 +8,16 @@ import { getArticle, getArticles } from "services/graphql/article/getArticle";
 import { getSpotlight } from "services/graphql/spotlight/getSpotlight";
 import { getMeta } from "services/graphql/meta/getMeta";
 import { getExternal } from "services/graphql/external/getExternal";
-import { getPrinteds } from "services/graphql/printeds/getPrinteds";
 import { getLive } from "services/graphql/live/getLive";
 import { getSetting } from "services/graphql/setting/getSetting";
 import { getThirdParty } from "./thirdParty/getThirdParty";
-import PostQueryApi from "services/api/postQueryApi";
-import PostQueryApiPrinteds from "services/api/postQueryApiPrinteds";
+import apolloClient from "services/apollo-client/apolloClient";
+import { getPrinteds } from "services/graphql/printeds/getPrinteds";
+import getApiPrinteds from "services/api/getApiPrinteds";
 
-export const getData = (query) => {
+
+
+export const getData = (query, client = apolloClient) => {
     const { entity } = query;
     const dataFetching = {
         params: query,
@@ -24,9 +26,9 @@ export const getData = (query) => {
         const { variables } = data;
         let apolloResult
         if (entity == "printeds") {
-            apolloResult = PostQueryApiPrinteds(data)
+            apolloResult = getApiPrinteds(data)
         } else {
-            apolloResult = PostQueryApi(data).then(res => res.data).catch(err => console.error("error en la consulta", err))
+            apolloResult = client.query(data).then(res => res.data).catch(err => console.error("error en la consulta", err))
         }
         return { index: `${entity}-${JSON.stringify(variables)}`, result: apolloResult };
     }

@@ -1,7 +1,7 @@
 import { TitleSection } from "component/global/TitleSection/TitleSection";
 import { Layout } from "Layouts/Layouts";
 import { HumorInternalSlider } from "./HumorInternalSlider/HumorInternalSlider";
-import { MgId } from "component/global/Mgid";
+import { Taboola } from "component/global/Taboola";
 
 const HumorInternal = (props) => {
     const { adsPage, footerMenu, mainMenu, topicsMenu, humorData, singleHumor_data } = props;
@@ -27,7 +27,7 @@ const HumorInternal = (props) => {
         <Layout adsPage={adsPage} dataHeader={mainMenu} dataFooter={footerMenu} topicMenu={topicsMenu} data={singleHumor_data.article} prebid="SECTION">
             <TitleSection name={name} tag="h2" />
             {slider}
-            <MgId />
+            <Taboola type={"section"} />
         </Layout>
     );
 };

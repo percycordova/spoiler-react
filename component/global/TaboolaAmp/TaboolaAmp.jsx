@@ -1,10 +1,10 @@
 const TaboolaAMP = () => {
-    /* const newroom = `{"vars": {"aid": "grupolarepblica-larepblica"}}`;    */
-    {/* <>
+    const newroom = `{"vars": {"aid": "grupolarepblica-larepblica"}}`;   
+    return <>
         <amp-analytics type="taboola" id="taboola">
             <script type="application/json" dangerouslySetInnerHTML={{__html: newroom}} />
-        </amp-analytics> */}
-        return  <div className="tem-lay-larepublica-body">
+        </amp-analytics>
+        <div className="tem-lay-larepublica-body">
             <amp-embed width="100" height="100"
                        type="taboola"
                        layout="responsive"
@@ -15,7 +15,7 @@ const TaboolaAMP = () => {
                        data-article="auto"
                        data-url=''/>
         </div>
-    /* </>  */
+    </> 
     
 };
 

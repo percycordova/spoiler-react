@@ -7,20 +7,35 @@
     height:4px;
     transition:width 0.3s ease; 
     margin-top: 0px;
-    background:#707070;
+    background:#F101CC;
 }
 .container__content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    max-width: 970px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1000px;
     margin: auto;
+    height: 100%;
+}
+.logo-header-kbeat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a { width: 177px;
+    height: 59px;
+}
+
+}
+.logo-header-search{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
 }
 .container-btn-main-menu {
-    display: inline-block;
+    display: flex;
+    gap:16px;
+    align-items: center;
     vertical-align: middle;
-    margin: 0 0 0 2px;
 }
 .btn-sandwich {
     width: 28px;
@@ -39,46 +54,49 @@
     height: 3px;
     width: 52%;
     background: #fff;
-    left: 6px;
 }
 .container-color {
-    padding: 10px 15px;
+    padding:0 16px;
+    height: 80px;
 }
-.logo-lr {
-    width: 200px;
-    height: 35px;
+.logo-kbeat {
+    width: 177px;
+    height: 59px;
 }
 .container-header_menu-secciones {
     display: flex;
-    padding: 0;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
+    background-color: $black;
+    padding: 13.5px 16px;
+    border-top: 1px solid $medium-gray;
 }
 .container-header_menu-secciones-link {
-    display: inline-block;
-    padding: 3px 5px 0;
-    color: #000;
+    color: $white;
     overflow: hidden;
     white-space: nowrap;
     text-decoration: none;
-    font-family: Roboto, sans-serif;
-    font-weight: 500;
-    font-size: 13px;
+    font-family: "Roboto Condensed", "Roboto",sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    text-decoration: none;
+    border-bottom: 4px solid $transparent;
 }
 .container-header_menu-secciones-item {
     list-style: none;
     display: inline-block;
     vertical-align: middle;
-    font-family: Roboto, sans-serif;
-    font-weight: 500;
     line-height: 1;
     cursor: pointer;
-    float: left;
 }
 .container-header_menu-secciones-link:hover {
-    text-decoration: none;
-    color: #000;
+    font-weight: 700;
+    border-bottom: 4px solid $purple;
+}
+.container-header_menu-secciones-link-active{
+    font-weight: 700;
+    border-bottom: 4px solid $purple;
 }
 .container-header__menu {
     position: absolute;
@@ -111,10 +129,6 @@
 }
 .container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 @media (min-width: 576px) {
@@ -129,7 +143,7 @@
 }
 @media (min-width: 992px) {
     .container {
-        max-width: 960px;
+        max-width: 1000px;
     }
     .general__header {
         min-height: 110px;
@@ -150,17 +164,7 @@
         height: 38px;
     }
 }
-@media (min-width: 540px) and (max-width: 999px) {
-    .container-color {
-        height: 58px;
-    }
-}
-@media (min-width: 768px) {
-    .logo-lr {
-        width: 300px;
-        height: 38px;
-    }
-}
+
 @media (min-width: 1000px) {
     .container-header__mainMenu {
         left: 22.5%;
@@ -174,49 +178,25 @@
         vertical-align: top;
         padding: 0;
     }
+    .container-color {
+        height: 80px;
+        padding-left: 6px;
+        padding-right: 18px;
+    }
     .hidden {
         display: none;
     }
 }
-.box-header {
-    width: 100%;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 999;
-    position: sticky;
-    margin-bottom: 5px;
-    :global(#container__header.hide-top-news){
-        top: -30px;
+@media (max-width: 999px) {
+    .box-header {
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 999;
+        position: sticky;
+        margin-bottom: 5px;
     }
-    @media screen and (min-width: 1000px) {
-        position: static;
-        :global(#container__header.sticky){
-            position: fixed;
-            top: 30px;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            .container-color {
-                position: relative;
-            }
-            :global(.list__menu){
-                display: none;
-            }
-            
-        }
-        :global(#container__header.hide-top-news){
-            top: 0;
-        }
-        :global(#menu__today.sticky){
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 999;
-        }
-    }
-    
 }
 .btn-sandwich_span:first-child {
     top: 6px;
@@ -244,3 +224,5 @@
         left: 9px !important;
     }
 }
+
+

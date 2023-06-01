@@ -1,4 +1,6 @@
-const PODCASTS = `
+import { gql } from "@apollo/client";
+
+const PODCASTS = gql`
     query Podcasts (
         $_limit: Int,
         $_orderField: String,

@@ -3,8 +3,8 @@ import { Layout } from "Layouts/Layouts";
 import { AmpLayout } from "Layouts/AmpLayout";
 import { pageError__container } from "./pageError.module.scss";
 /* import { Moreseen } from "component/Page_Section/Moreseen/Moreseen"; */
-import { MoreSeenGrid } from "component/Page_Home/MoreSeenGrid/MoreSeenGrid";
 import { HeaderAmp } from "component/global/Header/HeaderAmp/HeaderAmp";
+import { Moreseen } from "component/global/Moreseen/Moreseen";
 
 const PageError = (props) => {
     const { statusCode, adsPage, footerMenu, mainMenu, relatedArticles, firstAlertWeb, secondAlertWeb, topicsMenu } = props;
@@ -26,7 +26,7 @@ const PageError = (props) => {
     };
     const errorInfo = {
         404: {
-            image: "/static/images/404.png",
+            image: "/static/404.png",
             statusMessage:
                 "El contenido que buscas no está disponible o no existe<br/>Haz click <a href='/'>aquí</a> para regresar al inicio o revisa las notas que te recomendamos a continuación",
         },
@@ -50,7 +50,7 @@ const PageError = (props) => {
                             }}
                         />
                     </div>
-                    <MoreSeenGrid data={relatedArticles} title="LOS MÁS VISTOS:" />
+                    <Moreseen data={relatedArticles} title="LOS MÁS VISTOS:" />
                 </Layout>
             </>
         );

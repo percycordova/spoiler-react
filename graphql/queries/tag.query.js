@@ -1,10 +1,9 @@
-/* import { gql } from '@apollo/client'; */
+import { gql } from '@apollo/client';
 
-const TAG_QUERY = /* gql */ `
+const TAG_QUERY = gql`
 query tag ( $tagSlug: String ) {
   
   tag (site_id: "larepublica", slug: $tagSlug, status: 1, cache: 180) {
-    __typename
     _id
     name
     slug

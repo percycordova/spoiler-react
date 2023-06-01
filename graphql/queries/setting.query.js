@@ -1,6 +1,7 @@
-const SETTING_QUERY = `query Spotlight ($_type: String!) {
+import { gql } from "@apollo/client";
+
+const SETTING_QUERY = gql`query Spotlight ($_type: String!) {
     setting (type: $_type, site_id: "larepublica") {
-      __typename
       title
         data {
           value

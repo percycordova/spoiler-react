@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import WithSection from "hocs/withSection";
 import { Layout } from "Layouts/Layouts";
 import { Spotlight } from "component/Page_Section/Spotlight/Spotlight";
-import { ListSmallSection } from "component/Page_Section/ListSmallSection/ListSmallSection";
+// import { ListSmallSection } from "component/Page_Section/ListSmallSection/ListSmallSection";
 import { ListSection } from "component/Page_Section/ListSection/ListSection";
+import fetchApi from "services/api/fetchApi";
 import { TitleSection } from "component/global/TitleSection/TitleSection";
-import { InterlinkingSection } from "component/Page_Section/InterlinkingSection/InterlinkingSection";
+// import { InterlinkingSection } from "component/Page_Section/InterlinkingSection/InterlinkingSection";
 import { SlotAds } from "component/global/AdsManager/SlotAds";
-import { Moreseen } from "component/Page_Section/Moreseen/Moreseen";
 import { ShowMoreButton } from "component/global/ShowMoreButton/ShowMoreButton";
-import { getArticlesList } from "helpers/lastNews/lastNews";
-import { MgId } from "component/global/Mgid";
+import { Taboola } from "component/global/Taboola";
+import { Moreseen } from "component/global/Moreseen/Moreseen";
+import { ItemSection } from "component/Page_Home/ItemSection";
 
 export const Section = (props) => {
     const {
@@ -22,7 +23,6 @@ export const Section = (props) => {
         mainMenu,
         topicsMenu,
         spotlight_general,
-        portada,
     } = props;
     const limit = 24;
     const sectionArticles = section_data?.articles?.data.slice(0, limit) || [];
@@ -32,21 +32,22 @@ export const Section = (props) => {
     const [loading, setLoading] = useState(false);
     let titleSection = null;
     let dataSpotlight = null;
-    let dataGrid = null;
     let dataList;
     let interlinking = null;
     let isDataSubMnu = false;
+    let dataSmallGrid = null;
     const section = section_about.category.slug.replace("/", "")
-    const dataPortada = portada?.spotlight?.data?.item.slice(0,6);
-    function handler() {
+
+    const handler =() => {
         const num = numPage + 1
         setNumPage(num)
     }
-    useEffect(async function () {
+    useEffect(async () => {
         if (numPage > 1) {
             setLoading(true);
             const params = { category_slug: section, limit, page: numPage, order_by: "update_date" };
-            let data = await getArticlesList("articles", params);
+            let newData = await fetchApi("articles", params);
+            let data = newData?.articles?.data
             setLastPage(data.length < limit)
             data = data.filter(article => !dataSection.some(data => data._id == article._id));
             setDataSection([
@@ -57,6 +58,8 @@ export const Section = (props) => {
         }
         return () => null
     }, [numPage])
+
+    interlinking = <div style={{ padding: "10px" }}></div>;
 
     if (spotlight_general && Object.keys(spotlight_general) && Object.keys(spotlight_general).length) {
         const { spotlight } = spotlight_general;
@@ -69,7 +72,7 @@ export const Section = (props) => {
 
                 let dataSubMenu = section_item_link?.filter((submenuItem) => submenuItem.section[0].slug === "/" + section);
                 isDataSubMnu = dataSubMenu?.length > 0 ? true : false;
-                interlinking = isDataSubMnu ? <InterlinkingSection data={dataSubMenu} /> : <div style={{ padding: "10px" }}></div>;
+                // interlinking = isDataSubMnu ? <InterlinkingSection data={dataSubMenu} /> : <div style={{ padding: "10px" }}></div>;
             }
         }
     }
@@ -79,16 +82,18 @@ export const Section = (props) => {
             if (section_about?.category?.name && section_about.category.name.length > 0) {
                 titleSection = (
                     <TitleSection
+                        // name={
+                        //     `ÚLTIMAS NOTICIAS SOBRE ${section_about.category.name}`
+                        // }
                         name={
-                            `ÚLTIMAS NOTICIAS SOBRE ${section_about.category.name}`
+                            `${section_about.category.name}`
                         }
                         tag="h1"
-                        center={true}
                     />
                 );
             }
         }
-        if (dataSection && Object.keys(dataSection) && Object.keys(dataSection).length > 0 && !dataPortada) {
+        if (dataSection && Object.keys(dataSection) && Object.keys(dataSection).length > 0 ) {
             const firstItem = dataSection.slice(0, 1)[0];
             const imageItem =
                 firstItem?.data?.multimedia?.find((media) => media.type === "image")?.path ||
@@ -99,22 +104,10 @@ export const Section = (props) => {
                 slug: firstItem?.slug,
                 title: firstItem?.title,
             };
-
-            dataGrid = dataSection.slice(1, 6);
-            dataList = dataSection.slice(6, dataSection.length);
+            dataSmallGrid = dataSection.slice(1, 3);
+            dataList = dataSection.slice(3, dataSection.length);
         }
 
-        if (dataSection && Object.keys(dataSection) && Object.keys(dataSection).length > 0 && dataPortada && dataPortada?.length > 0) {
-            const newData = [...dataPortada, ...dataSection];
-            const firstItem = newData.slice(0, 1)[0];
-            dataSpotlight = {
-                image: firstItem?.image?.url || process.env.IMAGE_DEFAULT_1250x735,
-                slug: firstItem?.url,
-                title: firstItem?.title,
-            };
-            dataGrid = newData.slice(1, 6);
-            dataList = newData.slice(6, newData.length);
-        }
     }
 
     return (
@@ -128,30 +121,29 @@ export const Section = (props) => {
             listNote={section_data?.articles?.data || []}
         >
             {titleSection}
-            {interlinking}
+            {/* {interlinking} */}
             <div className="container__columns">
                 <article className="col__content">
                     <Spotlight data={dataSpotlight} />
-                    <SlotAds type="Strip" data={adsPage?.ads?.data} />
+                    
                 </article>
 
-                <article className="col__content offset-313">
-                    <ListSmallSection data={dataGrid} />
+                <article className="col__content offset-300 d-flex flex-col gap-16">
+                {dataSmallGrid.map((item,key)=><ItemSection data={item} key={key} type="subSpotlight" />) }
                 </article>
             </div>
             <div className="container__columns">
                 <article className="col__content">
+                    <SlotAds type="Strip" data={adsPage?.ads?.data} />
                     <ListSection data={dataList} adsPage={adsPage} />
-                    {!lastPage && <ShowMoreButton loading={loading} onClick={handler} />}
-                    <MgId />
+                    {dataSection?.length < 24 ? null : lastPage ? null : <ShowMoreButton loading={loading} onClick={handler} />}
+                    <Taboola type={"section"} />
                 </article>
 
-                <article className="col__content offset-313">
+                <article className="col__content offset-300">
                     <SlotAds type="Middle" data={adsPage?.ads?.data} />
                     <Moreseen data={analyticsSeccion} />
-                    <div className="sticky-viewability">
-                        <SlotAds type={"Middle2_Right"} data={adsPage?.ads?.data} />
-                    </div>
+                    <SlotAds type={"Middle2_Right"} data={adsPage?.ads?.data} />
                 </article>
             </div>
         </Layout>

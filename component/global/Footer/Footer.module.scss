@@ -2,9 +2,10 @@
 
 .wrapper__footer {
     max-width: 100%;
-    background-color: #f6f6f6;
+    background-color: $black;
 }
 .footer {
+    // padding: 30px 0;
     margin: 0 auto;
     max-width: 1000px;
     font-family: Roboto, sans-serif;
@@ -29,23 +30,24 @@
     position: relative;
     width: 100%;
     margin: auto;
-    background: $white;
-    padding: 15px;
+    background: $gray;
+    padding: 8px;
     display: flex;
     justify-content: space-between;
     border-radius: 5px;
 }
 .footer__search--btn {
     left: 0;
-    background: $white;
+    background: $gray;
     font-size: 18px;
 }
 .footer__search--btn2 {
-    background: $medium-dark-gray;
-    color: $white;
+    background: $gray;
+    color: #fff;
     border-radius: 3px;
     height: 25px;
     width: 65px;
+    // padding: 5px;
     vertical-align: middle;
     justify-content: flex-end;
     font-weight: 300;
@@ -60,14 +62,14 @@
 .footer__item {
     align-items: center;
     display: flex;
-    border-right: 2px solid $lr-red;
+    border-right: 2px solid $gray;
     padding: 0 15px;
     margin-bottom: 13px;
     padding: 0px 8px;
     list-style: none;
     a {
         font-size: 12px;
-        color: $black;
+        color: $gray;
         font-weight: 500;
         line-height: 16px;
     }
@@ -77,7 +79,7 @@
 }
 .footer__moreMedios {
     font-size: 14px;
-    color: $black;
+    color: $gray;
     font-weight: 600;
     text-align: center;
     padding: 16px;
@@ -93,7 +95,7 @@
 }
 .footer__item-tag a {
     text-decoration: none;
-    color: #242424;
+    color: $gray;
     font-weight: 400;
 }
 .footer__tags {
@@ -110,7 +112,7 @@
     a {
         font-weight: 600;
         font-size: 12px;
-        color: $black;
+        color: $gray;
     }
 }
 .copyright {
@@ -131,14 +133,14 @@
 .footer__interested--title {
     font-size: 2rem;
     font-weight: 600;
-    border-bottom: 1px solid $border-gray;
-    border-top: 1px solid $border-gray;
+    border-bottom: 1px solid $light-gray;
+    border-top: 1px solid $light-gray;
     padding: 10px;
     line-height: 2.1rem;
 }
 .menulist-btn-social {
     display: inline-flex;
-    width: 65px;
+    width: 84px;
 }
 .media__fb, .media__tw, .media__ig, .media__tk, .media__wp {
     width: 110px;
@@ -147,7 +149,8 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    background-color: $medium-dark-gray;
+    background-color: $gray;
+    //background-color: #535353;
 }
 
 .footer__btnsocial {
@@ -163,7 +166,7 @@
     display: none;
 }
 .backButton__wrapper {
-    background: $very-light-gray;
+    background: $dark-gray;
     width: 100%;
 }
 .backButton {
@@ -176,14 +179,12 @@
     cursor: pointer;
     display: flex;
     justify-self: flex-start;
-    font-family: 'PT Serif';
+    font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    color: $granite-gray;
-    img {
-        margin-right: 10px;
-    }
+    color: $gray;
+   
 }
 @media screen and (min-width: 1000px) {
     .contactLinks__mobile {
@@ -224,12 +225,12 @@
     }
     .footer__interested--title {
         font-size: 2.3rem;
-        margin: 0 8px;
-        padding: 8px 0;
+        margin: 0 0px;
+        padding: 8px;
         line-height: 3rem;
     }
     .menulist-btn-social {
-        width: 48px;
+    flex:1
     }
     .footer__media--items {
         width: 284px;
@@ -239,8 +240,24 @@
         font-size: 18px;
         line-height: 24px;
         padding: 18px;
-        img {
-            margin: 5px;
-        }
+        
+        
     }
 }
+
+.gap-10{
+    gap:10px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.item-center{
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+

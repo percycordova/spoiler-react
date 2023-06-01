@@ -1,4 +1,4 @@
-import style from "component/Page_Authors/MainAuthors/MainAuthors.module.scss";
+
 import { ListAuthors } from "component/Page_Authors/ListAuthors/ListAuthors";
 import { ShowMoreButton } from "component/global/ShowMoreButton/ShowMoreButton";
 import { SlotAds } from "component/global/AdsManager/SlotAds";
@@ -11,11 +11,11 @@ const MainAuthors = ({authorsData, loading, showBtn, showMore, dataAds, analytic
             <section className="col__content">
                 <TitleSection name="Autores" tag="h2" />
                 <ListAuthors data={authorsData} />
-                {!showBtn && (
+                {showBtn && (
                     <ShowMoreButton loading={loading} onClick={showMore} text={"VER MÁS AUTORES"} />
                 )}
             </section>
-            <section className="col__content offset-313">
+            <section className="col__content offset-300">
                 <SlotAds data={dataAds} type="Middle" />
                 <Moreseen data={analyticsGral} />
                 <div className="sticky-viewability">
