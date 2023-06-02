@@ -16,7 +16,7 @@ const WithHome = (WrapperComponent) => {
         },apolloClient);
         const mainGrid = await fetchApi("articles", {
             category_slug: "cine-series/peliculas",
-            limit: 7,
+            limit: 4,
             view: "home",
         },apolloClient);
         const newsWorld = await fetchApi("articles", {

@@ -1,9 +1,9 @@
 import { Title } from "component/global/Title/Title";
-import styles from "../SectionGrid/SectionGrid.module.scss";
+import styles from "../SectionTheLast/SectionTheLast.module.scss";
 import SmallCard from "../SmallCard/SmallCard";
 import MediumCard from "../MediumCard/MediumCard";
 
-const SectionGrid = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
+const SectionTheLast = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
     let dataDefault = [];
     let dataMain = {};
     let listItem;
@@ -19,15 +19,6 @@ const SectionGrid = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
             "/static/images/placeholder.png";
         listItem = (
             <div className={`${styles["listItem__container"]}`}>
-                <div className={`${styles["listItem__container-primaryCard"]}`}>
-                    <MediumCard
-                        urlNote={dataMain?.slug}
-                        altImg={dataMain?.data?.multimedia[0]?.data?.title}
-                        urlImg={urlImage}
-                        title={dataMain?.title}
-                    />
-                </div>
-
                 <div className={`n-columnas ${styles["listItem__container-secondaryCard"]}`}>
                     {dataDefault.slice(1, 9).map((item, index) => {
                         const title = item?.title ?? "";
@@ -36,7 +27,14 @@ const SectionGrid = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
                             item?.data?.multimedia.find((media) => media.type == "video")?.data?.image_path ||
                             "/static/images/placeholder.png";
                         const urlNote = item?.slug ?? "";
-                        return <SmallCard key={`${index}-${title}`} urlImg={imgUrl} title={title} urlNote={urlNote} />;
+                        return (
+                            <MediumCard
+                                urlNote={dataMain?.slug}
+                                altImg={dataMain?.data?.multimedia[0]?.data?.title}
+                                urlImg={urlImage}
+                                title={dataMain?.title}
+                            />
+                        );
                     })}
                     <style jsx>{`
                         @media (min-width: 769px) {
@@ -72,4 +70,4 @@ const SectionGrid = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
     );
 };
 
-export default SectionGrid;
+export default SectionTheLast;

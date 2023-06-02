@@ -1,0 +1,63 @@
+.sectionPosters{
+  margin-top: 40px;
+}
+
+.container__img {
+  display: flex;
+  gap: 16px;
+  overflow-x: scroll;
+}
+.container__img::-webkit-scrollbar {
+  display: none;
+}
+.arrowRight {
+  position: absolute;
+  top: calc(50% - 24px);
+  right: 12px;
+  cursor: pointer;
+}
+.sectionGrid__head {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  gap: 8px;
+  padding-bottom: 9px;
+  padding-top: 8px;
+  margin-bottom: 8px;
+  position: relative;
+}
+.sectionGrid__head h2 {
+  color: #ffffff;
+}
+
+.sectionGrid__head__linkTo {
+  display: block;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-variant: all-small-caps;
+  font-size: 24px;
+  line-height: 1.6rem;
+  color: #ffffff;
+  margin-top: 5px;
+}
+.sectionGrid__head__separator {
+  background-color: #ffffff;
+  height: 28px;
+  width: 2px;
+  display: block;
+  margin: 0;
+}
+
+.arrowLeft {
+  position: absolute;
+  top: calc(50% - 24px);
+  left: 12px;
+  cursor: pointer;
+}
+
+.arrowLeft:hover {
+  opacity: 0.6;
+}
+.arrowRight:hover {
+  opacity: 0.6;
+}

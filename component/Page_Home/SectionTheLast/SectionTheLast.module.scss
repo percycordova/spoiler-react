@@ -11,14 +11,14 @@
   align-items: flex-start;
   margin: 0;
   gap: 8px;
+  // border-bottom: 2px solid #1aba95;
+  // border-top: 1px solid #f0f0f0;
   padding-bottom: 9px;
   padding-top: 8px;
   margin-bottom: 8px;
   position: relative;
 }
-.sectionGrid__head h2 {
-  color: #ffffff;
-}
+
 .sectionGrid__head__linkTo {
   display: block;
   font-family: "Roboto";
@@ -26,11 +26,11 @@
   font-variant: all-small-caps;
   font-size: 24px;
   line-height: 1.6rem;
-  color: #ffffff;
+  color: #8a64eb;
   margin-top: 5px;
 }
 .sectionGrid__head__separator {
-  background-color: #ffffff;
+  background-color: #8a64eb;
   height: 28px;
   width: 2px;
   display: block;
@@ -78,3 +78,4 @@
     }
   }
 }
+

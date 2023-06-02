@@ -12,10 +12,10 @@ const SmallCard = ({
   urlNote = "",
   fontSize = "14px",
   lineHeight = "16px",
-  maxHeightImgtMobile = "60px",
-  maxWidthImgtMobile = "60px",
-  maxHeightImgDesktop = "50px",
-  maxWidthImgDesktop = "73px",
+  maxHeightImgtMobile = "70px",
+  maxWidthImgtMobile = "114px",
+  maxHeightImgDesktop = "70px",
+  maxWidthImgDesktop = "114px",
 }) => {
   const showSection = (
     <h3
@@ -50,12 +50,12 @@ const SmallCard = ({
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
+        color:#FFFFFF;
       }
       img.smallCard__image {
         display: block;
         width: ${maxWidthImgtMobile};
         height: ${maxHeightImgtMobile};
-        border-radius: 5px;
         object-fit: cover;
       }
       @media (min-width: 769px) {
