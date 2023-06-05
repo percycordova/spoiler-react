@@ -1,5 +1,7 @@
 .container__sectionGrid {
   margin-top: 24px;
+  background: linear-gradient(180deg, rgba(6, 0, 71, 0.75) 0%, rgba(0, 0, 0, 0.7) 100%);
+  padding: 24px 16px;
 }
 .listItem__container {
   display: flex;
@@ -16,8 +18,8 @@
   margin-bottom: 8px;
   position: relative;
 }
-.sectionGrid__head h2{
-  color:#FFFFFF;
+.sectionGrid__head h2 {
+  color: #ffffff;
 }
 
 .sectionGrid__head__linkTo {
@@ -27,11 +29,11 @@
   font-variant: all-small-caps;
   font-size: 24px;
   line-height: 1.6rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: 5px;
 }
 .sectionGrid__head__separator {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   height: 28px;
   width: 2px;
   display: block;
@@ -79,4 +81,3 @@
     }
   }
 }
-
