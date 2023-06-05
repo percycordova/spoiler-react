@@ -1,9 +1,8 @@
 import { Title } from "component/global/Title/Title";
-import styles from "../SectionTheLast/SectionTheLast.module.scss";
-import SmallCard from "../SmallCard/SmallCard";
+import styles from "../SectionCritics/SectionCritics.module.scss";
 import MediumCard from "../MediumCard/MediumCard";
 
-const SectionTheLast = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
+const SectionCritics = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => {
     let dataDefault = [];
     let dataMain = {};
     let listItem;
@@ -30,7 +29,6 @@ const SectionTheLast = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => 
                                 altImg={dataMain?.data?.multimedia[0]?.data?.title}
                                 urlImg={imgUrl}
                                 title={title}
-                                sectionName="CINE"
                                 key={`${title}-${index}`}
                             />
                         );
@@ -69,4 +67,4 @@ const SectionTheLast = ({ data, sectionTitle, linkTo = "#", nColumnas = 2 }) => 
     );
 };
 
-export default SectionTheLast;
+export default SectionCritics;
