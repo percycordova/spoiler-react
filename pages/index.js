@@ -1,4 +1,5 @@
 import { Layout } from "Layouts/Layouts";
+import SectionEstrenos from "component/Page_Home/SectionEstrenos/SectionEstrenos";
 import SectionGrid from "component/Page_Home/SectionGrid/SectionGrid";
 import SectionPosters from "component/Page_Home/SectionPostersSlider/SectionPosters";
 
@@ -27,11 +28,14 @@ const Home = (props) => {
             <SectionPosters idClass={2} urlImg="/static/prueba_spoiler/Netflix_logo.svg" background="linear-gradient(180deg, rgba(184, 29, 36, 0.6) 0%, rgba(0, 0, 0, 0.7) 100%)" />
             <SectionPosters idClass={4} urlImg="/static/prueba_spoiler/HBO_logo.svg" background="linear-gradient(180deg, rgba(151,30,233, 0.75) 0%, rgba(0, 0, 0, 0.7) 100%)" />
             <SectionPosters idClass={3} urlImg="/static/prueba_spoiler/PrimeVideo_logo.svg"background="linear-gradient(180deg, rgba(0,168, 225, 0.6) 0%, rgba(0, 0, 0, 0.7) 100%)" />
+            
+            <SectionEstrenos sectionTitle="Estrenos" linkTo=""/>
             <div className="container-column-3">
                 <SectionGrid data={mainGrid} sectionTitle="NETFLIX" linkTo="" nColumnas={1} />
                 <SectionGrid data={mainGrid} sectionTitle="CRUNCHYROLL" linkTo="" nColumnas={1} />
                 <SectionGrid data={mainGrid} sectionTitle="LIONSGATE+" linkTo="" nColumnas={1} />
             </div>
+
 
 
         </Layout >

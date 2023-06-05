@@ -1,0 +1,75 @@
+@import "src/base/variables";
+
+
+.sectionEstrenos{
+  width: 1000px;
+  height: 353px;
+  margin: 0 -16px;
+  background-image: url('/static/prueba_spoiler/bg_cinema.svg');
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.container__estrenos {
+  padding: 24px 16px;
+}
+
+.grid__estrenos{
+  gap: 16px;
+  justify-content: center;
+  display: flex;
+  margin-top: 24px;
+}
+
+// .container__img {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   z-index: 0;
+// }
+
+.sectionGrid__head {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  gap: 8px;
+  padding: 0 0 16px 8px;
+}
+.sectionGrid__head h2 {
+  color: $white;
+}
+.sectionGrid__head__linkTo {
+  display: block;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-variant: all-small-caps;
+  font-size: 24px;
+  line-height: 1.6rem;
+  color: $white;
+  margin-top: 5px;
+}
+.sectionGrid__head__separator {
+  background-color: $white;
+  height: 28px;
+  width: 2px;
+  display: block;
+  margin: 0;
+}
+
+.logo__empresas__online{
+  display: flex;
+  gap:16px
+}
+
+.title__poster{
+  font-family: "Roboto Condensed", "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 8px;
+  color: $white;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.estrenos__img{
+  width: 145px;
+  height: 214px;
+}

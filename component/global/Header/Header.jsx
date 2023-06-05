@@ -8,7 +8,7 @@ import { Networks } from "component/global/Header/Networks/Networks";
 import { BtnShared } from "../BtnShared/BtnShared";
 import { useRouter } from "next/router";
 
-const LogoLR = "/static/logo-spoiler.svg";
+const LogoLR = "/static/icon/logo-spoiler.svg";
 
 let styleMenuFixed = {};
 

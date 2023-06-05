@@ -52,7 +52,7 @@ const WithInternal = (WrapperComponent) => {
                 const article_internal = await fetchApi("article", {
                     slug: slug || "",
                 });
-                if (article_internal.article) {
+                if (article_internal?.article) {
                     if (article_internal.article.redirect) {
                         const { url, code } = article_internal.article.redirect
                         if (url && !url.includes(slug)) {

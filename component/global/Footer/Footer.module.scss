@@ -14,6 +14,7 @@
     background: none;
     border: none;
     outline: none;
+    background-color: $white;
     &::placeholder {
         font-weight: 300;
         color: $gray;
@@ -22,6 +23,7 @@
     }
 }
 .footer__search--items {
+    background: $white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +32,7 @@
     position: relative;
     width: 100%;
     margin: auto;
-    background: $gray;
+    background: $white;
     padding: 8px;
     display: flex;
     justify-content: space-between;
@@ -38,7 +40,7 @@
 }
 .footer__search--btn {
     left: 0;
-    background: $gray;
+    background: $white;
     font-size: 18px;
 }
 .footer__search--btn2 {
@@ -140,7 +142,7 @@
 }
 .menulist-btn-social {
     display: inline-flex;
-    width: 84px;
+    width: 60px;
 }
 .media__fb, .media__tw, .media__ig, .media__tk, .media__wp {
     width: 110px;
@@ -261,3 +263,9 @@
     flex-wrap: wrap;
 }
 
+.footer__logo-lr {
+   display: flex;
+   justify-content: center;
+   margin-bottom: 20px;
+
+}

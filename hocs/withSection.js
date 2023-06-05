@@ -12,7 +12,7 @@ const WithSection = (WrapperComponent) => {
             await fetchApi("category", {
                 slug: section,
             },apolloClient);
-        if (section_about.category) {
+        if (section_about?.category) {
 
             // const spotlight_general = await fetchApi("spotlight", {
             //     id: "61f9538bcae98460f475007a",
