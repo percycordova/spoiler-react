@@ -1,8 +1,8 @@
 export const colorSection = (sectionName = "") => {
   let color = "";
   switch (sectionName.toUpperCase()) {
-    case "K-DRAMAS":
-      color = "#E8495F";
+    case "CINE":
+      color = "#0094FF";
       break;
     case "TRENDING":
       color = "#3CB1B9";
