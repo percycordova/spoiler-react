@@ -2,7 +2,6 @@
 
 
 .sectionEstrenos{
-  width: 1000px;
   height: 353px;
   margin: 0 -16px;
   background-image: url('/static/prueba_spoiler/bg_cinema.svg');
@@ -16,24 +15,25 @@
 
 .grid__estrenos{
   gap: 16px;
-  justify-content: center;
   display: flex;
   margin-top: 24px;
+  overflow-x: scroll;
 }
 
-// .container__img {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   z-index: 0;
-// }
+.grid__estrenos::-webkit-scrollbar {
+  display: none;
+}
 
+.card_poster{
+  min-width: 145px;
+}
 .sectionGrid__head {
   display: flex;
   align-items: flex-start;
   margin: 0;
   gap: 8px;
   padding: 0 0 16px 8px;
+  position: relative;
 }
 .sectionGrid__head h2 {
   color: $white;
@@ -72,4 +72,25 @@
 .estrenos__img{
   width: 145px;
   height: 214px;
+}
+
+.arrowRight {
+  position: absolute;
+  top: calc(50% - 24px);
+  right: 0px;
+  cursor: pointer;
+}
+
+.arrowLeft {
+  position: absolute;
+  top: calc(50% - 24px);
+  left: 0px;
+  cursor: pointer;
+}
+
+.arrowLeft:hover {
+  opacity: 0.6;
+}
+.arrowRight:hover {
+  opacity: 0.6;
 }

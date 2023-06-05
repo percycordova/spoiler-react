@@ -3,6 +3,14 @@ import styles from "../SectionEstrenos/SectionEstrenos.module.scss";
 import { Title } from "component/global/Title/Title";
 
 const SectionEstrenos = ({sectionTitle,linkTo}) => {
+
+    const ref = useRef();
+    const moveLeft = () => {
+        ref.current.scrollLeft -= 156;
+    };
+    const moveRight = () => {
+        ref.current.scrollLeft += 156;
+    };
     
     return (
         <div className={styles["sectionEstrenos"]}>
@@ -22,9 +30,10 @@ const SectionEstrenos = ({sectionTitle,linkTo}) => {
 
                 </div>
             
-
-                <div className={styles["grid__estrenos"]}>
-                    <div>
+                <div style={{position:'relative'}}>
+                    
+                <div className={styles["grid__estrenos"]} ref={ref}>
+                    <div className={styles["card_poster"]}>
                         <img src="/static/prueba_spoiler/estrenos_01.png" alt="cinema_01" className={styles["estrenos__img"]}/>
                         <p className={styles["title__poster"]}>Fecha de estreno: 20 de Abril</p>
                         <div className={styles["logo__empresas__online"]}>
@@ -33,7 +42,7 @@ const SectionEstrenos = ({sectionTitle,linkTo}) => {
                             <img src="/static/icon/logo_hbo.svg" alt="hbo" className={styles[""]}/>
                         </div>
                     </div>
-                    <div>
+                    <div className={styles["card_poster"]}>
                         <img src="/static/prueba_spoiler/estrenos_02.png" alt="cinema_02" className={styles["estrenos__img"]}/>
                         <p className={styles["title__poster"]}>Fecha de estreno: 20 de Abril</p>
                         <div className={styles["logo__empresas__online"]}>
@@ -42,7 +51,7 @@ const SectionEstrenos = ({sectionTitle,linkTo}) => {
                             <img src="/static/icon/logo_star.svg" alt="star" className={styles[""]}/>
                         </div>
                     </div>
-                    <div>
+                    <div className={styles["card_poster"]}>
                         <img src="/static/prueba_spoiler/estrenos_03.png" alt="cinema_03" className={styles["estrenos__img"]}/>
                         <p className={styles["title__poster"]}>Fecha de estreno: 20 de Abril</p>
                         <div className={styles["logo__empresas__online"]}>
@@ -52,7 +61,7 @@ const SectionEstrenos = ({sectionTitle,linkTo}) => {
                             <img src="/static/icon/logo_star.svg" alt="star" className={styles[""]}/>
                         </div>
                     </div>
-                    <div>
+                    <div className={styles["card_poster"]}>
                         <img src="/static/prueba_spoiler/estrenos_04.png" alt="cinema_04" className={styles["estrenos__img"]}/>
                         <p className={styles["title__poster"]}>Fecha de estreno: 20 de Abril</p>
                         <div className={styles["logo__empresas__online"]}>
@@ -60,7 +69,7 @@ const SectionEstrenos = ({sectionTitle,linkTo}) => {
                             <img src="/static/icon/logo_disney.svg" alt="disney" className={styles[""]}/>
                         </div>
                     </div>
-                    <div>
+                    <div className={styles["card_poster"]}>
                         <img src="/static/prueba_spoiler/estrenos_05.png" alt="cinema_05" className={styles["estrenos__img"]}/>
                         <p className={styles["title__poster"]}>Fecha de estreno: 20 de Abril</p>
                         <div className={styles["logo__empresas__online"]}>
@@ -68,13 +77,16 @@ const SectionEstrenos = ({sectionTitle,linkTo}) => {
                             <img src="/static/icon/logo_anime.svg" alt="anime" className={styles[""]}/>
                         </div>
                     </div>
-                    <div>
+                    <div className={styles["card_poster"]}>
                         <img src="/static/prueba_spoiler/estrenos_06.png" alt="cinema_06" className={styles["estrenos__img"]}/>
                         <p className={styles["title__poster"]}>Fecha de estreno: 20 de Abril</p>
                         <div className={styles["logo__empresas__online"]}>
                             <img src="/static/icon/logo_disney.svg" alt="disney" className={styles[""]}/>
                         </div>
                     </div>
+                </div>
+                    <img src="static/icon/arrow_right.svg" alt="" className={styles["arrowRight"]} onClick={moveRight} />
+                    <img src="static/icon/arrow_left.svg" alt="" className={styles["arrowLeft"]} onClick={moveLeft} />
                 </div>
             </div>
 
