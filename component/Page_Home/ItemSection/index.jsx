@@ -32,7 +32,7 @@ const ItemSection = ({ data,type='default' }) => {
 
     <article className={`${type==='subSpotlight'? styles["mediumCard__container__subSpotlight"] : styles["mediumCard__container"]} `}>
 
-        <figure className={`${type==='subSpotlight'? styles["itemSection__image__subSpotlight"] : styles["itemSection__image"]} ${isVideo ? styles["video-type"] : ""}`} >
+        <figure className={`${type!=='subSpotlight'? styles["itemSection__image__subSpotlight"] : styles["itemSection__image"]} ${isVideo ? styles["video-type"] : ""}`} >
             <Image 
                 data={image} 
                 resize={resizeImage} 

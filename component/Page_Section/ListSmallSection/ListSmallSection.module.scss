@@ -1,6 +1,9 @@
+@import 'src/base/variables';
+
+
 .list__small{
     display: flex;
-    gap:16px;
+    gap:22px;
     flex-direction: column;
     &--item {
         display: flex;
@@ -9,9 +12,9 @@
             transition-property: opacity;
             transition-timing-function: cubic-bezier(.4,0,.2,1);
             transition-duration: .3s;
-            min-width: 96px;
-            max-width: 96px;
-            height: 60px;
+            min-width: 82px;
+            max-width: 82px;
+            height: 58px;
             display: flex;
         }
     }
@@ -23,6 +26,7 @@
         object-fit: cover;
     }
     &--title {
+        font-family: "Roboto Condensed","Roboto",sans-serif;
         font-weight: 700;
         font-size: 14px;
         line-height: 16px;
@@ -36,5 +40,7 @@
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 300ms;
         flex: 1;
+        color:$white;
+
     }
 }

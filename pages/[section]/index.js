@@ -12,6 +12,7 @@ import { ShowMoreButton } from "component/global/ShowMoreButton/ShowMoreButton";
 import { Taboola } from "component/global/Taboola";
 import { Moreseen } from "component/global/Moreseen/Moreseen";
 import { ItemSection } from "component/Page_Home/ItemSection";
+import { ListSmallSection } from "component/Page_Section/ListSmallSection/ListSmallSection";
 
 export const Section = (props) => {
     const {
@@ -104,8 +105,8 @@ export const Section = (props) => {
                 slug: firstItem?.slug,
                 title: firstItem?.title,
             };
-            dataSmallGrid = dataSection.slice(1, 3);
-            dataList = dataSection.slice(3, dataSection.length);
+            dataSmallGrid = dataSection.slice(1, 4);
+            dataList = dataSection.slice(4, dataSection.length);
         }
 
     }
@@ -124,28 +125,40 @@ export const Section = (props) => {
             {/* {interlinking} */}
             <div className="container__columns">
                 <article className="col__content">
-                    <Spotlight data={dataSpotlight} />
-                    
-                </article>
+                    <div className="main__section">
+                        <div  className="section__spotlight">
+                        <Spotlight data={dataSpotlight} />
 
-                <article className="col__content offset-300 d-flex flex-col gap-16">
-                {dataSmallGrid.map((item,key)=><ItemSection data={item} key={key} type="subSpotlight" />) }
-                </article>
-            </div>
-            <div className="container__columns">
-                <article className="col__content">
+                        </div>
+                    <div className="section__subSpotlight" >
+
+                <ListSmallSection data={dataSmallGrid} />
+
+                    </div>
+                    </div>
+
                     <SlotAds type="Strip" data={adsPage?.ads?.data} />
                     <ListSection data={dataList} adsPage={adsPage} />
                     {dataSection?.length < 24 ? null : lastPage ? null : <ShowMoreButton loading={loading} onClick={handler} />}
                     <Taboola type={"section"} />
+                    
                 </article>
 
-                <article className="col__content offset-300">
-                    <SlotAds type="Middle" data={adsPage?.ads?.data} />
+                <article className="col__content offset-300 d-flex flex-col gap-16">
+                <SlotAds type="Middle" data={adsPage?.ads?.data} />
                     <Moreseen data={analyticsSeccion} />
                     <SlotAds type={"Middle2_Right"} data={adsPage?.ads?.data} />
                 </article>
             </div>
+            {/* <div className="container__columns">
+                <article className="col__content">
+                    
+                </article>
+
+                <article className="col__content offset-300">
+                    
+                </article>
+            </div> */}
         </Layout>
     );
 };

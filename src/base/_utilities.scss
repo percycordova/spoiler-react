@@ -275,3 +275,27 @@
 .bg-estrenos{
   background: linear-gradient(180deg, rgba(16, 103, 25, 0.6) 0%, rgba(16, 103, 25, 0) 100%);
 }
+
+.main__section{
+  display: flex;
+  flex-direction: column;
+  gap:16px;
+
+  .section__spotlight{
+    width: 100%;
+    max-width: 387px;
+  }
+
+  .section__subSpotlight{
+    width: 100%;
+
+    @media (min-width: 769px) {
+      max-width: 249px;
+    }
+  }
+
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+  }
+}

@@ -23,9 +23,12 @@
     padding: 0;
 
     @media (min-width: 1000px){
-        max-height: 166px;
+        min-height: 58px;
+        min-width: 82px;
+
         img{
-            max-height: 166px;
+            min-height: 58px;
+            min-width: 82px;
 
         }
     }
@@ -121,8 +124,9 @@
   .mediumCard__container__subSpotlight {
 
     display: flex;
-    flex-direction: column;
     width: 100%;
+
+    gap: 8px;
 
     &:hover {
         .itemSection__title{

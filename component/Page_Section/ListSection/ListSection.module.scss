@@ -29,7 +29,8 @@
         object-fit: cover;
     }
     &--title {
-        // font-family: PT serif;
+        font-family: "Roboto Condensed","Roboto",sans-serif;
+        color: $white;
         font-weight: 700;
         font-size: 18px;
         line-height: 20px;
@@ -43,14 +44,18 @@
     }
 }
 .list__section--tag {
-    // font-family: Roboto,sans-serif;
+    font-family: "Roboto Condensed","Roboto",sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
     font-weight: 700;
-    color: $black;
+    background-color: $light-blue;
+    border-radius: 2px;
+    padding: 4px 8px;
+    display: inline-block !important;
+    width: auto;
+    color: $white;
     font-variant: all-small-caps;
-    max-height: 16px;
     overflow: hidden;
     -webkit-box-orient: vertical;
     display: -webkit-box;
@@ -67,19 +72,22 @@
     font-variant: all-small-caps;
     font-weight: 700;
     font-size: 14px;
+    font-family: "Roboto Condensed","Roboto",sans-serif;
     line-height: 16px;
-    color: #666;
+    color: $medium-dark-gray;
 }
 .list__section--author {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    width: 100%;
 }
 .list__section--content {
     display: flex;
     flex: 1 1;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
 }
 @media (min-width: 1000px) {
     .list__section {
