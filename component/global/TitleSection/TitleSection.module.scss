@@ -10,8 +10,9 @@
 }
 
 .more__colors{
-    border-bottom: 1px solid $black;
+    border-bottom: 1px solid $medium-gray;
     border-top: 1px solid $black;
+    padding-bottom: 16px;
 }
 
 .mb{
@@ -21,12 +22,12 @@
 .titleSection__main {
     display: inline-flex;
     align-items: center;
-    font-size: 24px;
-    // font-size: 20px;
-    line-height: 28px;
+    font-family: "Roboto Condensed","Roboto",sans-serif;
+    color: $white;
+    font-size: 20px;
+    line-height: 24px;
     font-weight: 700;
     text-transform: uppercase;
-    color: $medium-gray;
     font-style: normal;
     // font-family: "Roboto",sans-serif;
     // @media (min-width: 740px) {
