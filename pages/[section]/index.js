@@ -86,6 +86,7 @@ export const Section = (props) => {
                         // name={
                         //     `ÚLTIMAS NOTICIAS SOBRE ${section_about.category.name}`
                         // }
+                        more
                         name={
                             `${section_about.category.name}`
                         }
