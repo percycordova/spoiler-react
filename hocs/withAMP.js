@@ -13,7 +13,7 @@ const WithAmp = (WrappedComponent) => {
             const article_interna = await fetchApi("article", {
                 slug: slug_article || "",
             },apolloClient);
-            if (article_interna.article) {
+            if (article_interna?.article) {
                 const category__article = article_interna?.article?.data?.categories[0]?.name;
                 const title__article = article_interna?.article?.metadata_seo?.seo_title;
                 const meta = { ...article_interna.article, titleMeta: `${title__article} | ${category__article} | La República` };
