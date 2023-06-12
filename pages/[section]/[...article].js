@@ -95,8 +95,7 @@ const Internal = (props) => {
         >
             {data_schema_cronos}
             <Head>{isOpta && <Opta />}</Head>
-            <TitleSection name={titleMostViewed} tag="span" href={slugSection} />
-            <TitleInterna title={article_internal?.article?.title} />
+            {/* <TitleSection name={titleMostViewed} tag="span" href={slugSection} /> */}
             <div className="container__columns">
                 <main className="col__content">
                     <article>

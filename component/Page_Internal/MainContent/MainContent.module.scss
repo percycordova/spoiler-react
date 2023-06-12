@@ -28,7 +28,7 @@
         }
     }
     .main__title {
-        color: $medium-gray;
+        color: $white;
         text-rendering: optimizeSpeed;
         letter-spacing: 0;
         line-height: 24px;
@@ -43,9 +43,9 @@
         line-height: 16px;
         font-family: "Roboto", sans-serif;
         padding: 8px 0;
-        color: #000;
+        color: $white;
         a{
-            color:$black;
+            color:$purple;
             text-decoration: underline;
         }
     }
@@ -162,7 +162,7 @@
             height: auto;
         }
         p {
-            color: $medium-gray;
+            color: $white;
             font-size: 14px;
             line-height: 18px;
             font-weight: initial;
@@ -172,7 +172,7 @@
             font-family: "Roboto", sans-serif;
         }
         a {
-            color: $black;
+            color: $white;
             text-decoration: underline;
             overflow-wrap: break-word;
         }
@@ -192,7 +192,7 @@
             margin-inline-start: 0px;
             margin-inline-end: 0px;
             font-weight: bold;
-            color: $medium-gray;
+            color: $white;
             margin-bottom: 0.5rem;
         }
         h4 {
@@ -359,7 +359,6 @@
         .main__title {
             font-size: 30px;
             line-height: 30px;
-            color: $medium-gray;
         }
     }
 

@@ -267,7 +267,7 @@ const Header = (props) => {
                         </div>
 
                     </div>
-                    {internal && showProgressBar && <div className={style["bar"]} ><div className={style["loader"]} style={{ width: `${percentVisible}%`, maxWidth: '100%'}}></div></div>}
+                    {showFixMenu && internal && showProgressBar && <div className={style["bar"]} ><div className={style["loader"]} style={{ width: `${percentVisible}%`, maxWidth: '100%'}}></div></div>}
                      <InputSearch refBtnSearch={refBtnSearch} showSearch={showSearch} />
                     <div className="list__menu" id="list__menu">
                         {!showFixMenu && <div className={style["container"]}>
