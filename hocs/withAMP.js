@@ -31,9 +31,9 @@ const WithAmp = (WrappedComponent) => {
 
 
                 // consumo de api de cuponidad libero
-                const data_offers_today = await fetchApi("third-party", {
-                    type: "cuponidad",
-                },apolloClient);
+                // const data_offers_today = await fetchApi("third-party", {
+                //     type: "cuponidad",
+                // },apolloClient);
                 const typePage = "internal_note_amp"
                 return {
                     typePage,
@@ -41,7 +41,7 @@ const WithAmp = (WrappedComponent) => {
                     article_interna,
                     interlinkingData,
                     liveBlogPosting,
-                    data_offers_today,
+                    // data_offers_today,
                 };
             }
         }
