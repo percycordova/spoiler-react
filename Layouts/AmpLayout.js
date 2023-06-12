@@ -7,7 +7,7 @@ import { Compass } from "component/Compass";
 import { Chartbeat } from "component/dataLayer/amp";
 import { FooterAmp } from "component/global/Footer/FooterAmp/FooterAmp";
 
-const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
+const AmpLayout = ({ children, data, dataSchema, sectionName, title }) => {
     // console.log('>>> data layout - amp : ',data)
     let page_title = title ?? data?.title;
 
@@ -75,10 +75,13 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                 body {
                     line-height: 1.5;
                     -webkit-font-smoothing: antialiased;
+                   
+
                 }
                 html,
                 body {
                     min-height: 100%;
+                    background: rgba(0, 0, 0, 0.8);
                 }
                 p,
                 h1,
@@ -88,7 +91,7 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                 h5,
                 h6 {
                     overflow-wrap: break-word;
-                    color: #333;
+                    color: #FFFFFF;
                 }
 
                 h1,
@@ -131,8 +134,6 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                     padding: 14.5px 15px;
                     display: flex;
                     border-radius: 0px 0px 5px 5px;
-                    border: 1px solid #e4e4e4;
-                    border-top: 3px solid #E8495F;
                     margin-bottom: 24px;
                     margin-top: 8px;
                 }
@@ -173,7 +174,7 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                     flex-direction: column;
                 }
                 .author__redSocial_link {
-                    color: #E8495F;
+                    color: #535353;
                     font-weight: 700;
                     font-variant: all-small-caps;
                     text-decoration: none;
@@ -195,38 +196,39 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                 }
                 .main__interlinking {
                     margin: 8px 0px 16px 0;
-                    border-left: 3px solid #E8495F;
                     display: flex;
                     flex-direction: column;
                     gap: 5px;
                     padding: 0;
-                    list-style: none;
+                    list-style: circle !important;
+                    color: #BC00FF;
+                    padding-left: 16px;
                 }
                 .content__interlinking {
                     color: #E8495F;
-                    list-style: none;
                     font-size: 18px;
                 }
                 .interlinking__item {
                     line-height: 16px;
-                    padding: 0 16px;
+                    padding: 0 0px;
                 }
                 .interlinking__link {
                     font-size: 14px;
                     font-weight: 700;
-                    color: #E8495F;
+                    color: #BC00FF;
                     line-height: 16px;
                 }
                 .mainContent__tags_list {
                     width:100%;
                     margin-bottom: 20px;
                     display: inline-flex;
+                    color: #FFFFFF;
                 }
                 .mainContent__tags-list {
                     padding: 8px 0 7px;
                     width:100%;
-                    border-top: 1px solid #E8495F;
-                    border-bottom: 2px solid #E8495F;
+                    border-top: 1px solid #BC00FF;;
+                    border-bottom: 2px solid #BC00FF;;
                 }
                 .mainContent__tags-list:before {
                     content: "Temas";
@@ -244,10 +246,10 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                     text-transform: uppercase;
                     font-weight: 700;
                     font-variant: all-small-caps;
-                    border-left: 1px solid #E8495F;
+                    border-left: 1px solid #BC00FF;
                 }
                 .tags-item-link {
-                    color: #E8495F;
+                    color: #ffffff;
                     font-size: 14px;
                     padding-right: 10px;
                     margin: 5px 0 5px 10px;
@@ -401,18 +403,17 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                     align-items: center;
                     box-sizing: border-box;
                     margin: 16px 0 ;
-                    border-top: 1px solid #E8495F;
-                    border-bottom: 1px solid #E8495F;
+                    border-bottom: 1px solid #333333;
                     padding: 8px 0;
                     
                 }
                 .internalBadge a {
-                    font-size: 24px;
-                    line-height:28px;
+                    font-size: 20px;
+                    line-height:23px;
                     font-family: "Roboto", serif;
                     text-transform: uppercase;
                     font-weight: 700;
-                    color: #333333;
+                    color: #FFFFFF;
 
                     
                 }
@@ -444,25 +445,25 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                     font-family: 'Roboto';
                     font-style: normal;
                     font-size: 24px;
-                    line-height: 24px;
-                    color: #333333;
+                    line-height: 28px;
+                    color: #FFFFFF;
                 }
                 .teaser__internal {
-                    font-size: 14px;
+                    font-size: 16px;
                     font-weight: 400;
                     letter-spacing: inherit;
-                    line-height: 16px;
+                    line-height: 22px;
                     font-family: Roboto, sans-serif;
                     padding: 8px 0;
                     margin: 0;
-                    color: #000;
+                    color: #FFFFFF;
                 }
                 .teaser__internal p {
                     margin: 0;
                 }
                 .teaser__internal a {
                     text-decoration: underline;
-                    color: #E8495F;
+                    color: #BC00FF;
                 }
                 .container__legend-internal {
                     background-color: hsla(0, 0%, 90.2%, 0.658824);
@@ -586,7 +587,7 @@ const AmpLayout = ({ children, data, dataSchema, sectionName,title }) => {
                     font-weight: 400;
                 }
                 .container__body-amp p a {
-                    color: #E8495F;
+                    color: #BC00FF;
                     text-decoration: underline;
                     overflow-wrap: break-word;
                 }
