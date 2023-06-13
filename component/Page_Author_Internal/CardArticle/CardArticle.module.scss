@@ -18,14 +18,14 @@
     .article__title {
         a {
             font-weight: 700;
-            color: $medium-gray;
+            color: $white;
             font-size: 1.6rem;
             line-height: 20px;
         }
     }
     .article__category {
         a {
-            color: $lr-red;
+            color: $purple;
             font-weight: 700;
             font-size: 1.4rem;
             line-height: 1.6rem;
@@ -35,7 +35,7 @@
         }
     }
     .article__date {
-        color: $granite-gray;
+        color: $medium-dark-gray;
         font-weight: 700;
         font-size: 1.4rem;
         line-height: 1.6rem;
