@@ -102,8 +102,8 @@
     }
     .mainContent__tags-list {
         padding: 8px 0 7px 0px;
-        border-top: 1px solid $black;
-        border-bottom: 2px solid $black;
+        border-top: 1px solid $purple;
+        border-bottom: 2px solid $purple;
         margin-bottom: 20px;
         margin-top: 15px;
         &:before {
@@ -114,6 +114,7 @@
             font-size: 20px;
             line-height: 16px;
             margin-right: 10px;
+            color: $white;
         }
     }
     .mainContent__tags-list_item {
@@ -125,11 +126,11 @@
         font-weight: 700;
         font-variant: all-small-caps;
         a {
-            color: $black;
+            color: $white;
         }
         &::before {
             content: "|";
-            color: $black;
+            color: $purple;
             font-size: 20px;
             padding: 0 8px;
         }
@@ -170,9 +171,14 @@
             margin-bottom: 1rem;
             font-weight: 400;
             font-family: "Roboto", sans-serif;
+
+            // span {
+            //     background-color: $purple !important;
+            //     color: $white !important;
+            // }
         }
         a {
-            color: $white;
+            color: $purple;
             text-decoration: underline;
             overflow-wrap: break-word;
         }
