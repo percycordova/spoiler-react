@@ -1,74 +1,86 @@
-@import 'src/base/variables';
+@import "src/base/variables";
 
 .container {
-    background: #F4F4F4;
-    border-radius: 5px;
-    padding: 16px;
-    margin-bottom: 16px;
-    font-size: 12px;
+  background: #f4f4f4;
+  border-radius: 5px;
+  padding: 16px;
+  margin-bottom: 16px;
+  font-size: 12px;
 }
 
 .info__title {
-    font-size: 2em;
-    margin-bottom: 8px;
+  font-size: 2em;
+  margin-bottom: 8px;
+  align-items: center;
 }
 
 .tagInfo__content {
-    display: flex;
-    margin: 0 -15px;
-    align-items: center;
-
-    >div {
-        padding: 0 15px;
-    }
+  display: flex;
+  margin: 0 -15px;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  > div {
+    padding: 0 15px;
+  }
+  @media screen and (min-width: 560px) {
+    flex-direction: row;
+  }
+}
+.tagInfo__description p a {
+  color: #bc00ff;
 }
 
 .info__image {
-    @media screen and (min-width: 720px) {
-        min-width: 20%;
-    }
-
-    min-width: 30%;
-    padding: 0;
-    text-align: center;
+  max-width: 300px;
+  @media screen and (min-width: 720px) {
+    min-width: 20%;
+  }
 }
 
 .tagInfo__related {
-    h3{
-        font-size: 1.75em;
-        margin-bottom: 12px;
-    }
-    li {
-        border-left: solid 2px #F200CC;
-        padding-left: 8px;
-        display: block;
-        &:not(:last-child) {
-            margin-bottom: 8px;
-        }
-        font-weight: bold;
-        font-size: 14px;
-        font-family: "Roboto",sans-serif;
-    }
+  h3 {
+    font-size: 1.75em;
+    margin-bottom: 12px;
+  }
+  li {
+    border-left: solid 2px #f200cc;
+    padding-left: 8px;
+    display: block;
 
-    margin-bottom: 16px;
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    a {
+      color: #bc00ff;
+    }
+  }
+
+  margin-bottom: 16px;
 }
 
 .tagInfo__extra {
-    strong{
-        font-size: 1.75em;
-        font-family: "Roboto",sans-serif;
-        margin-bottom: 12px;
-        display: block;
+  strong {
+    font-size: 1.75em;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 12px;
+    display: block;
+  }
+  li {
+    border-left: solid 2px #f200cc;
+    padding-left: 8px;
+    display: block;
+    &:not(:last-child) {
+      margin-bottom: 8px;
     }
-    li {
-        border-left: solid 2px #F200CC;
-        padding-left: 8px;
-        display: block;
-        &:not(:last-child) {
-            margin-bottom: 8px;
-        }
-        font-weight: bold;
-        font-size: 14px;
-        font-family: "PT Serif";
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "PT Serif";
+    a {
+        color: #bc00ff ;
     }
+  }
 }

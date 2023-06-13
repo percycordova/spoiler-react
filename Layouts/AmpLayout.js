@@ -130,7 +130,7 @@ const AmpLayout = ({ children, data, dataSchema, sectionName, title }) => {
                 // Here css-component
                 .wrapper__quote {
                     position: relative;
-                    background-color: rgba(232, 73, 95, 0.2);
+                     background-color: rgba(188,0,255,0.35);
                     padding: 14.5px 15px;
                     display: flex;
                     border-radius: 0px 0px 5px 5px;
@@ -139,7 +139,7 @@ const AmpLayout = ({ children, data, dataSchema, sectionName, title }) => {
                 }
                 .wrapper__quote blockquote p strong,
                 .wrapper__quote blockquote p b {
-                    color: #E8495F;
+                    color: #BC00FF;
                     font-size: 14px;
                     font-weight: 700;
                     font-feature-settings: "smcp", "c2sc";
@@ -153,7 +153,7 @@ const AmpLayout = ({ children, data, dataSchema, sectionName, title }) => {
                     white-space: nowrap;
                 }
                 .wrapper__quote blockquote p a {
-                    color: #000;
+                    color: #FFFFFF;
                     text-decoration: none;
                     font-weight: 700;
                     font-size: 14px;
