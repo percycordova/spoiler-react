@@ -16,7 +16,7 @@
     &__category {
         display: inline-block;
         margin-top: 3px;
-        color: $lr-red;
+        color: $purple;
         font-weight: 700;
         font-size: 1.4rem;
         line-height: 1.15;
@@ -58,7 +58,7 @@
 
 .callout-clamp4,
 .callout {
-    border-left: 2px solid $lr-red;
+    border-left: 2px solid $purple;
     padding: 8px;
     display: flex;
     flex-direction: column;
