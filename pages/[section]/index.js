@@ -13,6 +13,7 @@ import { Taboola } from "component/global/Taboola";
 import { Moreseen } from "component/global/Moreseen/Moreseen";
 import { ItemSection } from "component/Page_Home/ItemSection";
 import { ListSmallSection } from "component/Page_Section/ListSmallSection/ListSmallSection";
+import { getArticlesList } from "helpers/lastNews/lastNews";
 
 export const Section = (props) => {
     const {
@@ -47,8 +48,7 @@ export const Section = (props) => {
         if (numPage > 1) {
             setLoading(true);
             const params = { category_slug: section, limit, page: numPage, order_by: "update_date" };
-            let newData = await fetchApi("articles", params);
-            let data = newData?.articles?.data
+            let data = await getArticlesList("articles", params);
             setLastPage(data.length < limit)
             data = data.filter(article => !dataSection.some(data => data._id == article._id));
             setDataSection([
