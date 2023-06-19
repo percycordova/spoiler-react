@@ -1,8 +1,9 @@
+import { getArticlesList } from "helpers/lastNews/lastNews";
 import fetchApi from "services/api/fetchApi";
 
 export const getDataAuthors = async (limit, page) => {
     try {
-        const authors = await fetchApi("authors", {
+        const authors = await getArticlesList("authors", {
             limit,
             page,
         });
@@ -20,7 +21,7 @@ export const getDataAuthors = async (limit, page) => {
 };
 
 export const getDataAuthor = async (limit, page, author_id) => {
-    const author = await fetchApi("articles", {
+    const author =await getArticlesList("articles", {
         limit,
         page,
         author_id,
@@ -37,7 +38,7 @@ export const getDataAuthor = async (limit, page, author_id) => {
 };
 
 export const getDataArticlesByAuthor = async (limit, page, author_id) => {
-    const articles = await fetchApi("articles", {
+    const articles = await getArticlesList("articles", {
         limit,
         page,
         author_id,

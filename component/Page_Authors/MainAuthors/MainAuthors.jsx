@@ -11,7 +11,7 @@ const MainAuthors = ({authorsData, loading, showBtn, showMore, dataAds, analytic
             <section className="col__content">
                 <TitleSection name="Autores" tag="h2" />
                 <ListAuthors data={authorsData} />
-                {showBtn && (
+                {!showBtn && (
                     <ShowMoreButton loading={loading} onClick={showMore} text={"VER MÁS AUTORES"} />
                 )}
             </section>

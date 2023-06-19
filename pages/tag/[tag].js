@@ -15,8 +15,9 @@ import { Moreseen } from "component/global/Moreseen/Moreseen";
 import WithTag from "hocs/withTag";
 import { TagAboutContent } from "component/Page_Tag/TagAboutContent";
 import { TagRelatedContent } from "component/Page_Tag/TagRelatedContent";
+import { getArticlesList } from "helpers/lastNews/lastNews";
 
-export const Section = (props) => {
+export const Tag = (props) => {
     const {
         tag_data,
         tag_about,
@@ -25,11 +26,8 @@ export const Section = (props) => {
         footerMenu,
         mainMenu,
         topicsMenu,
-        spotlight_general,
-        article,
-        portada,
     } = props;
-
+    console.log("tag_about", tag_about?.tag)
     const limit = 24;
     const sectionArticles = tag_data?.articles?.data.slice(0, limit) || [];
     const [dataSection, setDataSection] = useState(sectionArticles);
@@ -45,7 +43,7 @@ export const Section = (props) => {
     let tagRelated = null;
     let titleTag = null;
 
-    const handler =() => {
+    const handler = () => {
         const num = numPage + 1
         setNumPage(num)
     }
@@ -53,8 +51,7 @@ export const Section = (props) => {
         if (numPage > 1) {
             setLoading(true);
             const params = { tag_slug: tag_about.tag.slug.replace("/tag/", ""), limit, page: numPage, order_by: "update_date" };
-            let newData = await fetchApi("articles", params);
-            let data = newData?.articles?.data
+            let data = await getArticlesList("articles", params);
             setLastPage(data.length < limit)
             data = data.filter(article => !dataSection.some(data => data._id == article._id));
             setDataSection([
@@ -67,21 +64,21 @@ export const Section = (props) => {
     }, [numPage])
 
 
-        if (dataSection && Object.keys(dataSection) && Object.keys(dataSection).length > 0) {
-            const firstItem = dataSection.slice(0, 1)[0];
-            const imageItem =
-                firstItem?.data?.multimedia?.find((media) => media.type === "image")?.path ||
-                firstItem?.data?.multimedia?.find((media) => media.type == "video")?.data?.image_path ||
-                process.env.IMAGE_DEFAULT_1250x735;
-            dataSpotlight = {
-                image: imageItem,
-                slug: firstItem?.slug,
-                title: firstItem?.title,
-            };
+    if (dataSection && Object.keys(dataSection) && Object.keys(dataSection).length > 0) {
+        const firstItem = dataSection.slice(0, 1)[0];
+        const imageItem =
+            firstItem?.data?.multimedia?.find((media) => media.type === "image")?.path ||
+            firstItem?.data?.multimedia?.find((media) => media.type == "video")?.data?.image_path ||
+            process.env.IMAGE_DEFAULT_1250x735;
+        dataSpotlight = {
+            image: imageItem,
+            slug: firstItem?.slug,
+            title: firstItem?.title,
+        };
 
-            // dataGrid = dataSection.slice(1, 6);
-            dataList = dataSection.slice(1, dataSection.length);
-        }
+        // dataGrid = dataSection.slice(1, 6);
+        dataList = dataSection.slice(1, dataSection.length);
+    }
 
     if (tag_about && Object.keys(tag_about) && Object.keys(tag_about).length) {
         const { tag } = tag_about;
@@ -116,11 +113,11 @@ export const Section = (props) => {
 
     return (
         <Layout
+            adsPage={adsPage}
             dataHeader={mainMenu}
             dataFooter={footerMenu}
             topicMenu={topicsMenu}
             prebid={"TAG"}
-            adsPage={adsPage}
             data={tag_about?.tag}
             listNote={tag_data?.articles?.data || []}
         >
@@ -151,4 +148,4 @@ export const Section = (props) => {
     );
 };
 
-export default WithTag(Section);
+export default WithTag(Tag);

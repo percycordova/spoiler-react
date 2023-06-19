@@ -12,7 +12,7 @@ const AuthorInternalComp = ({ author, adsPage, articlesData, showMore, loading, 
                 <AuthorOverview author={author} />
                 <SlotAds type="Strip" data={adsPage?.ads?.data} />
                 <ListArticles data={articlesData} adsPage={adsPage} />
-                {showBtn && (
+                {!showBtn && (
                     <ShowMoreButton loading={loading} onClick={showMore} />
                 )}
                 <MgId />

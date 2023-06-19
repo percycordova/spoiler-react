@@ -1,6 +1,4 @@
 import NextHead from "next/head";
-// import { Footer } from "component/global/Footer/Footer";
-// import { Header } from "component/global/Header/Header";
 import { MetaTags } from "component/global/MetaTags/MetaTags";
 import resizePrototype from "util/resizePrototype";
 import { convertirFecha } from "util/convertirFecha";
@@ -38,7 +36,7 @@ const Layout = (props) => {
     const [showSearch, setShowSearch] = useState(false);
     const refBtnSearch = useRef();
     /* const isHumor = asPath.includes("/carlincatura/") || asPath.includes("/heduardicidios/") || asPath.includes("/molina/"); */
-
+    console.log("data:::::::::::", data);
 
     let data_title = "",
         meta_url = "",
@@ -71,6 +69,8 @@ const Layout = (props) => {
 
     if (data && Object.keys(data) && Object.keys(data).length) {
         if (data.site && Object.keys(data.site) && !data.type && data.site.__typename === "SiteType") {
+
+
             const { site } = data;
             meta_url = "";
             meta_type = "website";
@@ -103,7 +103,60 @@ const Layout = (props) => {
                     meta_description = metadata_seo.seo_description;
                 }
             }
-        } else if (data.type && (data.type === "article" || data.type === "article2" || data.type === "gallery" || data.type === "live")) {
+            if (data.__typename === "TagType") {
+
+                const currentDate = convertirFecha(new Date(), "long");
+
+                meta_type = "website";
+                id_article = "";
+                meta_article_tags = "";
+
+                //schema
+                legends_image = "Fuente - La República";
+
+                if (data.slug && data.slug.length) {
+                    meta_slug = data.slug;
+                    meta_url = data.slug;
+                    if (data.page && data.page > 1) {
+                        meta_url += `?page=${data.page - 1}`;
+                    }
+                    data_section_slug = data.slug;
+                    dataLayer_sectionSlug = data.slug;
+                }
+
+                if (data?.name && data.name.length) {
+                    data_section = data?.name || "";
+                }
+                if (data.metadata_seo && Object.keys(data.metadata_seo) && Object.keys(data.metadata_seo).length) {
+                    const { metadata_seo } = data;
+
+                    if (metadata_seo.seo_title && metadata_seo.seo_title.length) {
+                        meta_title = metadata_seo.seo_title;
+                        data_title = metadata_seo.seo_title;
+                    } else {
+                        data_title = `Últimas noticias de ${data_section} hoy ${currentDate} | Spoiler `;
+                    }
+                    if (data.page && data.page > 1) {
+                        data_title = `${data_title} - Página ${data.page - 1}`;
+                    }
+                    if (metadata_seo.keywords && metadata_seo.keywords.length) {
+                        meta_keywords = metadata_seo.keywords;
+                        //schema
+                        list_tags = metadata_seo.keywords;
+                    } else if (data?.name && data.name.length) {
+                        //schema
+                        list_tags = data?.name || "";
+                    }
+                    meta_description =
+                        metadata_seo.seo_description ||
+                        `¿Buscas noticias sobre ${data_section}? En La República puedes informarte sobre las últimas noticias de ${data_section} hoy ${currentDate} y otros temas relacionados.`;
+                    // if(data.page && data.page>1){
+                    //     meta_description = `${meta_description} - Página ${data.page - 1}`
+                    // }
+                }
+            }
+        } else if (data.type && (data.type === "article" || data.type === "article2" || data.type === "gallery" || data.type === "live" || data.type === "video")) {
+
             if (
                 data.slug ==
                 "/economia/2020/03/12/exportacion-palta-se-posiciono-como-producto-top-de-oferta-agroindustrial-agricultores-agricultura-lrnd"
@@ -112,27 +165,27 @@ const Layout = (props) => {
             }
             meta_type = "article";
             id_article = data._id || "";
-            
+
             meta_slug = data.slug || "";
             meta_url = data.slug;
-            meta_author = data.data?.authors?.find((author) => author.fullname)?.fullname || "La República";
+            meta_author = data.data?.authors?.find((author) => author.fullname)?.fullname || "Redacción La República";
             author_slug = data.data?.authors?.find((author) => author.slug)?.slug || "/autor/la-republica/";
             /* Creo categoria por defecto */
             let category_article = {
                 slug: "/archivo",
                 name: "/archivo"
             }
-            if(data.data?.categories?.length>0){
-                const {categories} = data.data;
-                // isHumor = categories.some(category=>humorCategories?.some(humorCat=>category.slug.includes(humorCat)))
-                categories.forEach(category=>{
-                    if(validateGeolocation(category.slug)){
+            if (data.data?.categories?.length > 0) {
+                const { categories } = data.data;
+                isHumor = categories.some(category => humorCategories.some(humorCat => category.slug.includes(humorCat)))
+                categories.forEach(category => {
+                    if (validateGeolocation(category.slug)) {
                         geoCode = validateGeolocation(category.slug)
                     }
                 })
                 const categoryFilterSlug = categories[0].slug.split("/")[1];
-                const categoryFiltered = categories.find(cat=>cat.slug.endsWith(categoryFilterSlug))
-                if(categoryFiltered){
+                const categoryFiltered = categories.find(cat => cat.slug.endsWith(categoryFilterSlug))
+                if (categoryFiltered) {
                     category_article = categoryFiltered
                 }
             }
@@ -208,7 +261,7 @@ const Layout = (props) => {
                     }
                 }
                 social_title = meta_title;
-                if(data.metadata_redes?.title?.length > 0){
+                if (data.metadata_redes?.title?.length > 0) {
                     social_title = data.metadata_redes.title
                 }
                 if (datos.authors && Object.keys(datos.authors) && Object.keys(datos.authors).length) {
@@ -226,6 +279,7 @@ const Layout = (props) => {
                 }
             }
         } else if (data.type === "section") {
+
             meta_type = data.type;
             id_article = "";
             meta_article_tags = "";
@@ -277,6 +331,7 @@ const Layout = (props) => {
                 }
             }
         } else if (data.__typename === "TagType") {
+
             const currentDate = convertirFecha(new Date(), "long");
 
             meta_type = "website";
@@ -306,7 +361,7 @@ const Layout = (props) => {
                     meta_title = metadata_seo.seo_title;
                     data_title = metadata_seo.seo_title;
                 } else {
-                    data_title = `Últimas noticias de ${data_section} hoy ${currentDate} | La República`;
+                    data_title = `Últimas noticias de ${data_section} hoy ${currentDate} | Spoiler `;
                 }
                 if (data.page && data.page > 1) {
                     data_title = `${data_title} - Página ${data.page - 1}`;
@@ -371,7 +426,6 @@ const Layout = (props) => {
             }
         }
     }
-
     const meta_data = {
         meta_type,
         meta_slug,
@@ -390,7 +444,10 @@ const Layout = (props) => {
     };
 
     showSchemaData = <Schemas listNote={listNote} data={data} type={meta_type} articlesData={articlesData} />;
-
+    console.log("tamre xD", {
+        meta_title,
+        data_title
+    });
     // TODO review main
     return (
         <>
@@ -469,7 +526,7 @@ const Layout = (props) => {
                 showSearch={showSearch}
                 data={data}
                 internal={internal}
-                type={meta_type} /> 
+                type={meta_type} />
             {/* <InputSearch refBtnSearch={refBtnSearch} showSearch={showSearch} /> */}
             <div className={isAmp ? "wrapper__content--amp" : "wrapper__content mh-600"}>{children}</div>
             <Footer data={dataFooter} />

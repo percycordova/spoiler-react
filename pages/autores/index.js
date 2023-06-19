@@ -1,6 +1,6 @@
 import { Layout } from "Layouts/Layouts";
 import { MainAuthors } from "component/Page_Authors/MainAuthors/MainAuthors";
-import { getDataAuthors } from "helpers/authros/authors";
+import { getArticlesList } from "helpers/lastNews/lastNews";
 import WithAuthor from "hocs/author/withAuthor";
 import React, { useEffect, useState } from "react";
 
@@ -35,38 +35,31 @@ const metadataAuthor = {
 const Authors = (props) => {
     const { footerMenu, topicsMenu, mainMenu, authors, analyticsSeccion, adsPage, perPage, firstAlertWeb, newsAtemporal, analyticsGral } =
         props;
-
-    const [authorsData, setAuthorsData] = useState(authors?.authors?.data || []);
-    const [loading, setLoading] = useState(false);
-    const [numPage, setNumPage] = useState(1);
-    const [showBtn, setShowBtn] = useState(true);
     const limit = 20;
+    const authorArticles = authors?.authors?.data?.slice(0, limit) || [];
+    const [authorsData, setAuthorsData] = useState(authorArticles);
+    const [lastPage, setLastPage] = useState(authorArticles.length < limit);
+    const [numPage, setNumPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+
     const showMore = () => {
         setNumPage(numPage + 1);
     };
 
-    useEffect(() => {
+    useEffect(async function () {
         if (numPage > 1) {
             setLoading(true);
-            getDataAuthors(limit, numPage)
-                .then((response) => {
-                    const newAuthors = response?.authors?.authors?.data || [];
-                    if (newAuthors.length > 0) {
-                        setAuthorsData([...authorsData, ...newAuthors]);
-                        setLoading(false);
-                        if (newAuthors.length < limit) {
-                            setShowBtn(false);
-                        }
-                    } else {
-                        setShowBtn(false);
-                        setLoading(false);
-                        return;
-                    }
-                })
-                .catch((err) => {
-                    console.log("Error", err);
-                });
+            const params = { limit, page: numPage, order_by: "update_date" };
+            let data = await getArticlesList("authors", params);
+            setLastPage(data.length < limit);
+            data = data.filter(author => !authorsData.some(data => data._id == author._id));
+            setAuthorsData([
+                ...authorsData,
+                ...data
+            ]);
+            setLoading(false);
         }
+        return () => null
     }, [numPage]);
 
     return (
@@ -79,13 +72,14 @@ const Authors = (props) => {
             adsPage={adsPage}
             prebid={"SECTION"}
         >
-            <MainAuthors 
+            <MainAuthors
                 authorsData={authorsData}
                 loading={loading}
-                showBtn={showBtn}
+                showBtn={lastPage}
                 showMore={showMore}
                 dataAds={adsPage?.ads?.data}
                 analyticsGral={analyticsGral}
+            
             />
         </Layout>
     );
