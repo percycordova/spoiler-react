@@ -15,7 +15,7 @@ const DegradedCard = ({ title, urlImg, altImg, sectionName, urlNote, height, wid
           title={title}
           className={`${styles["secondarySpotlight__image"]}}`}
         />
-        <div className={`${styles["secondarySpotlight__figure-opacity"]}`} style={{ height: `${gradientHeight}` }}></div>
+        <div className={`${styles["secondarySpotlight__figure-opacity"]}`} style={{ height: `${gradientHeight}` }}>{sectionName}</div>
       </figure>
       <a href={urlNote} className="extend-link">
         <div className={`${styles["secondarySpotlight__content"]}`}>
